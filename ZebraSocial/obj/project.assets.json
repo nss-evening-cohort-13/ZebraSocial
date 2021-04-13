@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\jorda\\.nuget\\packages\\": {}
+    "C:\\Users\\13526\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jorda\\source\\repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
+      "projectUniqueName": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
       "projectName": "ZebraSocial",
-      "projectPath": "C:\\Users\\jorda\\source\\repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
-      "packagesPath": "C:\\Users\\jorda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jorda\\source\\repos\\ZebraSocial\\ZebraSocial\\obj\\",
+      "projectPath": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
+      "packagesPath": "C:\\Users\\13526\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\13526\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }
