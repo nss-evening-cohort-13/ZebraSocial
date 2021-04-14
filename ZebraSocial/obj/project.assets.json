@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\13526\\.nuget\\packages\\": {}
+    "C:\\Users\\jonat\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
+      "projectUniqueName": "C:\\Users\\repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
       "projectName": "ZebraSocial",
-      "projectPath": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
-      "packagesPath": "C:\\Users\\13526\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\13526\\Source\\Repos\\ZebraSocial\\ZebraSocial\\obj\\",
+      "projectPath": "C:\\Users\\repos\\ZebraSocial\\ZebraSocial\\ZebraSocial.csproj",
+      "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\repos\\ZebraSocial\\ZebraSocial\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\13526\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
