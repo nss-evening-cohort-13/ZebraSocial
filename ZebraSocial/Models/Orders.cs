@@ -8,8 +8,8 @@ namespace ZebraSocial.Models
     public class Orders
     {
         public int Id { get; set; }
-        public int Customer_Id { get; set; }
-        public int Event_Id { get; set; }
-        public decimal Money { get; set; }
+        public int CustomerId { get; set; }
+        public int EventId { get; set; }
+        public decimal Total { get; set; }
     }
 }
