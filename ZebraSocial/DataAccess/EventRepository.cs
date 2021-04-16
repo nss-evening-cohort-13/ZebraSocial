@@ -20,5 +20,17 @@ namespace ZebraSocial.DataAccess
             var results = db.Query<Event>(sql).ToList();
             return results;
         }
+
+        public void Add(Event yourEvent)
+        {
+            var sql = @"INSERT INTO [dbo].[Events] ([AnimalId],[Name],[Type],[Date],[Length], [Location], [Price])
+                                    OUTPUT inserted.Id 
+                                    VALUES(@AnimalId ,@Name, @Type, @Date, @Length, @Location, @Price)";
+
+            var db = new SqlConnection(ConnectionString);
+            var id = db.ExecuteScalar<int>(sql, yourEvent);
+
+            yourEvent.Id = id;
+        }
     }
 }

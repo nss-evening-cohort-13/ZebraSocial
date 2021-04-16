@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZebraSocial.DataAccess;
+using ZebraSocial.Models;
 
 namespace ZebraSocial.Controllers
 {
@@ -19,9 +20,19 @@ namespace ZebraSocial.Controllers
             _repo = new EventRepository();
         }
         [HttpGet]
+        // api/events
         public IActionResult GetAllEvents()
         {
             return Ok(_repo.GetAll());
         }
+
+        [HttpPost]
+        // api/events
+        public IActionResult AddEvent(Event yourEvent)
+        {
+            _repo.Add(yourEvent);
+            return Created($"api/Events/{yourEvent.Id}", yourEvent);
+        }
+
     }
 }
