@@ -32,5 +32,15 @@ namespace ZebraSocial.DataAccess
 
             yourEvent.Id = id;
         }
+
+        public void Remove(int id)
+        {
+            var sql = @"DELETE
+                        FROM Events
+                        WHERE Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, new { id });
+        }
     }
 }
