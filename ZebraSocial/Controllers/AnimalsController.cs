@@ -14,11 +14,11 @@ namespace ZebraSocial.Controllers
     [ApiController]
     public class AnimalsController : ControllerBase
     {
-        AnimalsRepository _repo;
+        AnimalRepository _repo;
 
         public AnimalsController()
         {
-            _repo = new AnimalsRepository();
+            _repo = new AnimalRepository();
         }
 
         //Get api Animals
