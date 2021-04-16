@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ZebraSocial.Controllers
 {
-    [Route("api/Animal")]
+    [Route("api/PaymentInfo")]
     [ApiController]
-    public class AnimalController : ControllerBase
+    public class PaymentInfoController : ControllerBase
     {
     }
 }
