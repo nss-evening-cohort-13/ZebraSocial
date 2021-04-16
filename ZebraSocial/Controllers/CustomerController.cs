@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ZebraSocial.DataAccess;
+using ZebraSocial.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,9 +9,21 @@ using System.Threading.Tasks;
 
 namespace ZebraSocial.Controllers
 {
-    [Route("api/Customer")]
+    [Route("api/Customers")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        CustomerRepository _repo;
+            public CustomerController()
+        {
+            _repo = new CustomerRepository();
+        }
+        
+        [HttpGet]
+        public IActionResult GetAllCustomers()
+        {
+            return Ok(_repo.GetAll());
+        }
+
     }
 }
