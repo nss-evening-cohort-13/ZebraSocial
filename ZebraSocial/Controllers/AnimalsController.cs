@@ -27,5 +27,14 @@ namespace ZebraSocial.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+        //POST api Animals
+        [HttpPost]
+        public IActionResult AddAnAnimal(Animal animal)
+        {
+            _repo.Add(animal);
+            return Created($"api/Animals/{animal.Id}", animal);
+        }
+
     }
 }
