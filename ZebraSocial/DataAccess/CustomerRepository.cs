@@ -26,5 +26,17 @@ namespace ZebraSocial.DataAccess
             return results;
         }
 
+        public void Add(Customer customer)
+        {
+            var sql = @"INSERT INTO [dbo].[Customers] ([firstName],[lastName],[email],[imageUrl],[paymentId])
+                        OUTPUT inserted.Id
+                        VALUES(@firstName ,@lastName ,@email ,@imageUrl ,@paymentId)";
+           
+           var db = new SqlConnection(ConnectionString);
+           var id = db.ExecuteScalar<int>(sql, customer);
+
+            customer.Id = id;
+        }
+
     }
 }

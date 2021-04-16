@@ -25,5 +25,14 @@ namespace ZebraSocial.Controllers
             return Ok(_repo.GetAll());
         }
 
+        // add a customer 
+        [HttpPost]
+        public IActionResult AddACustomer(Customer customer)
+        {
+            _repo.Add(customer);
+            return Created($"api/Customers/{customer.Id}", customer);
+        }
+        
+
     }
 }
