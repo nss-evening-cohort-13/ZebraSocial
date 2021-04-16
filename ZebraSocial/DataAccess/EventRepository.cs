@@ -8,7 +8,7 @@ using Dapper;
 
 namespace ZebraSocial.DataAccess
 {
-    public class EventsRepository
+    public class EventRepository
     {
         const string ConnectionString = "Server=localhost;Database=ZebraSocial;Trusted_Connection=True;";
 
