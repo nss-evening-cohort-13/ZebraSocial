@@ -32,7 +32,43 @@ namespace ZebraSocial.Controllers
             _repo.Add(customer);
             return Created($"api/Customers/{customer.Id}", customer);
         }
-        
+
+        [HttpGet("{id}")]
+        public IActionResult GetCustomerById(int id)
+        {
+            var OneCustomer = _repo.GetCustomerById(id);
+
+            if (OneCustomer == null)
+            {
+                return NotFound("This customer does not exist.");
+            }
+
+            return Ok(OneCustomer);
+        }
+
+
+        [HttpPut("{id}/update")]
+        public IActionResult UpdateCustomer(Customer OneCustomer)
+        {
+            _repo.Update(OneCustomer);
+           
+            return Ok(OneCustomer);
+        }
+
+        /* Delete a customer 
+        [HttpDelete("{customerId}")]
+
+        public IActionResult DeleteCustomer(int customerId, int orderId)
+        {
+           if(customerId == orderId)
+            {
+                _repo.Remove(customerId);
+                _repo.Remove(orderId);
+            }
+
+            return Ok();*/
+     //   }
+
 
     }
 }

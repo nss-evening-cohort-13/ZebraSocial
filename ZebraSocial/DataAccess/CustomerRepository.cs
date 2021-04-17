@@ -38,5 +38,43 @@ namespace ZebraSocial.DataAccess
             customer.Id = id;
         }
 
+        public Customer GetCustomerById(int id)
+        {
+            var sql = @"select *
+                        from [Customers]
+                        where Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var OneCustomer = db.QueryFirstOrDefault<Customer>(sql, new { Id = id });
+
+            return OneCustomer;
+        }
+
+        public void Update(Customer OneCustomer)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"UPDATE [Customers]
+                        SET FirstName = @FirstName,
+                            LastName = @LastName,
+	                        Email = @Email,
+	                        ImageUrl = @ImageUrl,
+	                        PaymentId = @PaymentId
+                        WHERE Id = @id";
+
+            db.Execute(sql, OneCustomer);
+        }
+
+        public void Remove(int id)
+        {
+            var sql = @"DELETE
+                        from Customers, Orders
+                        WHERE Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, new { id });
+        }
+
     }
 }
