@@ -50,6 +50,14 @@ namespace ZebraSocial.Controllers
             return Ok(animal);
         }
 
+        //Delete an Aninal
+        [HttpDelete("{animalId}")]
+        public IActionResult DeleteAnimal(int animalId)
+        {
+            _repo.Remove(animalId);
+
+            return Ok();
+        }
 
     }
 }

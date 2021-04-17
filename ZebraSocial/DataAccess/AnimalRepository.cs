@@ -49,5 +49,18 @@ namespace ZebraSocial.DataAccess
 
             return animal;
         }
+
+
+        //Delete Animal
+        public void Remove(int id)
+        {
+            var sql = @"Delete 
+                        from Animals 
+                        where Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            db.Execute(sql, new { id });
+        }
     }
 }
