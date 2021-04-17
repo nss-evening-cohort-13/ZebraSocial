@@ -36,5 +36,28 @@ namespace ZebraSocial.Controllers
             return Created($"api/Animals/{animal.Id}", animal);
         }
 
+        //GET to /api/Animals/{id}
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var animal = _repo.Get(id);
+
+            if (animal == null)
+            {
+                return NotFound("Animal not found");
+            }
+
+            return Ok(animal);
+        }
+
+        //Delete an Aninal
+        [HttpDelete("{animalId}")]
+        public IActionResult DeleteAnimal(int animalId)
+        {
+            _repo.Remove(animalId);
+
+            return Ok();
+        }
+
     }
 }
