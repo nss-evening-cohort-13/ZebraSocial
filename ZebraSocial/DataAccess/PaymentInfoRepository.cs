@@ -37,5 +37,30 @@ namespace ZebraSocial.DataAccess
 
             paymentinfo.Id = id;
         }
+
+        //Get a single Payment
+        public PaymentInfo Get(int id)
+        {
+            var sql = @"Select *
+                        From PaymentInfo
+                        where Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var paymentinfo = db.QueryFirstOrDefault<PaymentInfo>(sql, new { id = id });
+
+            return paymentinfo;
+        }
+        //Delete Payment
+        public void Remove(int id)
+        {
+            var sql = @"Delete 
+                        from PaymentInfo 
+                        where Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            db.Execute(sql, new { id });
+        }
     }
 }
