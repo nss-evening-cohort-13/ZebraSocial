@@ -42,5 +42,32 @@ namespace ZebraSocial.DataAccess
             using var db = new SqlConnection(ConnectionString);
             db.Execute(sql, new { id });
         }
+
+        public Event Get(int id)
+        {
+            var sql = @"SELECT *
+                        FROM Events
+                        WHERE Id = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var yourEvent = db.QueryFirstOrDefault<Event>(sql, new { id });
+            return yourEvent;
+        }
+
+        public void Update(Event yourEvent)
+        {
+            var sql = @"UPDATE Events
+                        SET
+                        AnimalId = @animalId,
+                        Name = @name,
+                        Type = @type,
+                        Date = @date,
+                        Length = @length,
+                        Location = @location,
+                        Price = @price
+                        WHERE Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, yourEvent);
+        }
     }
 }

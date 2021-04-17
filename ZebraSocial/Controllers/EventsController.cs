@@ -43,5 +43,30 @@ namespace ZebraSocial.Controllers
             return Ok();
         }
 
+        [HttpGet("{id}")]
+        // api/events/{id}
+        public IActionResult GetById(int id)
+        {
+            var yourEvent = _repo.Get(id);
+
+            if (yourEvent == null)
+            {
+                return NotFound("The event you are trying to get could not be found. Sorry...");
+            };
+            return Ok(yourEvent);
+        }
+        
+        [HttpPut("{id}/update")]
+        // api/events/{id}/update
+        public IActionResult UpdateEvent(Event yourEvent)
+        {
+            if (yourEvent == null)
+            {
+                return NotFound("The event you are trying to update could not be found. Sorry...");
+            };
+            _repo.Update(yourEvent);
+
+            return Ok(yourEvent);
+        }
     }
 }
