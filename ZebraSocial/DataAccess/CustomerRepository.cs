@@ -66,7 +66,7 @@ namespace ZebraSocial.DataAccess
             db.Execute(sql, OneCustomer);
         }
 
-        public void Remove(int id)
+       /* public void Remove(int id)
         {
             var sql = @"DELETE
                         from Customers, Orders
@@ -74,7 +74,7 @@ namespace ZebraSocial.DataAccess
 
             using var db = new SqlConnection(ConnectionString);
             db.Execute(sql, new { id });
-        }
+        }*/
 
     }
 }
