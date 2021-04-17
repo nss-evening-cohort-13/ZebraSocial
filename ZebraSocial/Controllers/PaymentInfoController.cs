@@ -36,5 +36,28 @@ namespace ZebraSocial.Controllers
             return Created($"api/PaymentInfo/{paymentinfo.Id}", paymentinfo);
         }
 
+        //GET to /api/PaymentInfo/{id}
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var paymentinfo = _repo.Get(id);
+
+            if (paymentinfo == null)
+            {
+                return NotFound("Payment not found");
+            }
+
+            return Ok(paymentinfo);
+        }
+
+        //Delete a Payment
+        [HttpDelete("{paymentId}")]
+        public IActionResult DeleteAnimal(int paymentId)
+        {
+            _repo.Remove(paymentId);
+
+            return Ok();
+        }
+
     }
 }
