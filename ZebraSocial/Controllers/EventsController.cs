@@ -55,7 +55,7 @@ namespace ZebraSocial.Controllers
             };
             return Ok(yourEvent);
         }
-
+        
         [HttpPut("{id}/update")]
         // api/events/{id}/update
         public IActionResult UpdateEvent(Event yourEvent)
