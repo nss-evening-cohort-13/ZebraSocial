@@ -23,5 +23,19 @@ namespace ZebraSocial.DataAccess
 
             return db.Query<PaymentInfo>(sql).ToList();
         }
+
+        //ADD Payment
+        public void Add(PaymentInfo paymentinfo)
+        {
+            var sql = @"INSERT INTO [PaymentInfo] ([FirstName],[LastName],[CardNumber],[ExpMonth],[ExpYear],[CVV])
+                        OUTPUT inserted.Id
+                        VALUES(@FirstName, @LastName, @CardNumber, @ExpMonth, @ExpYear, @CVV)";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var id = db.ExecuteScalar<int>(sql, paymentinfo);
+
+            paymentinfo.Id = id;
+        }
     }
 }
