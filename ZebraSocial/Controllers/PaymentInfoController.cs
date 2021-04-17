@@ -28,5 +28,13 @@ namespace ZebraSocial.Controllers
             return Ok(_repo.GetAll());
         }
 
+        //POST api Payments
+        [HttpPost]
+        public IActionResult AddAnPaymentInfo(PaymentInfo paymentinfo)
+        {
+            _repo.Add(paymentinfo);
+            return Created($"api/PaymentInfo/{paymentinfo.Id}", paymentinfo);
+        }
+
     }
 }
