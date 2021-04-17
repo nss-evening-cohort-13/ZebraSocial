@@ -35,5 +35,19 @@ namespace ZebraSocial.DataAccess
 
             animal.Id = id;
         }
+
+        //Get a single Animal
+        public Animal Get(int id)
+        {
+            var sql = @"Select *
+                        From Animals
+                        where Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+
+            var animal = db.QueryFirstOrDefault<Animal>(sql, new { id = id });
+
+            return animal;
+        }
     }
 }
