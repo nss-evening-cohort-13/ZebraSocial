@@ -33,6 +33,30 @@ namespace ZebraSocial.DataAccess
             order.Id = id;
         }
 
+        public void Update(Order order)
+        {
+            var sql = @"UPDATE Orders
+                        SET
+                        CustomerId = @customerId,
+                        EventId = @eventId,
+                        Total = @total
+                        WHERE Id = @id";
+                        
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, order);
+        }
+
+        public Order Get(int id)
+        {
+            var sql = @"SELECT *
+                        FROM Orders
+                        WHERE Id = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var order = db.QueryFirstOrDefault<Order>(sql, new { id });
+            return order;
+        }
+
         public void Remove(int id)
         {
             var sql = @"DELETE
