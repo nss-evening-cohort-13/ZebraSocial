@@ -35,13 +35,22 @@ namespace ZebraSocial.DataAccess
 
         public void Remove(int id)
         {
-            var sql = @"DELETE
-                        FROM Events
-                        WHERE Id = @id";
-
             using var db = new SqlConnection(ConnectionString);
-            db.Execute(sql, new { id });
+            var sql = @"UPDATE Events
+                        SET
+                        AnimalId = Null,
+                        Name = 'Deleted Event',
+                        Type = Null,
+                        Date = Null,
+                        Length = Null,
+                        Location = Null,
+                        Price = Null
+                        WHERE Id = @id";
+            var yourEvent = Get(id);
+            
+            db.Execute(sql, yourEvent);
         }
+
 
         public Event Get(int id)
         {
