@@ -55,19 +55,16 @@ namespace ZebraSocial.Controllers
             return Ok(OneCustomer);
         }
 
-        /* Delete a customer 
+        // Soft delete customer 
         [HttpDelete("{customerId}")]
-
-        public IActionResult DeleteCustomer(int customerId, int orderId)
+        // api/events/{customerId}
+        public IActionResult DeleteCustomer(int customerId)
         {
-           if(customerId == orderId)
-            {
-                _repo.Remove(customerId);
-                _repo.Remove(orderId);
-            }
 
-            return Ok();*/
-     //   }
+            _repo.Remove(customerId);
+
+            return Ok();
+        }
 
 
     }
