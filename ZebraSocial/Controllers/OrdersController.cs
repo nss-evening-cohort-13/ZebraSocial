@@ -34,6 +34,32 @@ namespace ZebraSocial.Controllers
             return Created($"api/Events/{order.Id}", order);
         }
 
+        [HttpPut("{id}/update")]
+        // api/orders/{id}/update
+        public IActionResult UpdateEvent(Order order)
+        {
+            if (order == null)
+            {
+                return NotFound("The order you are trying to update could not be found. Sorry...");
+            };
+            _repo.Update(order);
+
+            return Ok(order);
+        }
+
+        [HttpGet("{id}")]
+        // api/orders/{id}
+        public IActionResult GetById(int id)
+        {
+            var order = _repo.Get(id);
+
+            if (order == null)
+            {
+                return NotFound("The order you are trying to get could not be found. Sorry...");
+            };
+            return Ok(order);
+        }
+
         [HttpDelete("{orderId}")]
         // api/orders/{orderId}
         public IActionResult DeleteOrder(int orderId)
