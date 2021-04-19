@@ -65,16 +65,23 @@ namespace ZebraSocial.DataAccess
 
             db.Execute(sql, OneCustomer);
         }
-
-       /* public void Remove(int id)
+        public void Remove(int id)
         {
-            var sql = @"DELETE
-                        from Customers, Orders
-                        WHERE Id = @id";
-
             using var db = new SqlConnection(ConnectionString);
-            db.Execute(sql, new { id });
-        }*/
+            var sql = @"UPDATE [Customers]
+                        SET
+                        FirstName = Null,
+                        LastName = Null,
+                        Email = Null,
+                        ImageUrl = Null,
+                        PaymentId = Null
+                        WHERE Id = @id";
+            var OneCustomer = GetCustomerById(id);
+
+            db.Execute(sql, OneCustomer);
+        }
 
     }
+
 }
+
