@@ -50,6 +50,21 @@ namespace ZebraSocial.DataAccess
             return animal;
         }
 
+        public void Update(Animal animal)
+        {
+            var sql = @"UPDATE Animals
+                        SET
+                        Name = @name,
+                        Type = @type,
+                        EventSpecialty = @eventSpecialty,
+                        ImageUrl = @imageUrl,
+                        Description = @description,
+                        Price = @price
+                        WHERE Id = @id";
+
+            using var db = new SqlConnection(ConnectionString);
+            db.Execute(sql, animal);
+        }
 
         //Delete Animal
         public void Remove(int id)

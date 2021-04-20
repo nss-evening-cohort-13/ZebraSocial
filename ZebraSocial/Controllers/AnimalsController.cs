@@ -50,6 +50,19 @@ namespace ZebraSocial.Controllers
             return Ok(animal);
         }
 
+        [HttpPut("{id}/update")]
+        // api/orders/{id}/update
+        public IActionResult UpdateEvent(Animal animal)
+        {
+            if (animal == null)
+            {
+                return NotFound("The event you are trying to update could not be found. Sorry...");
+            };
+            _repo.Update(animal);
+
+            return Ok(animal);
+        }
+
         //Delete an Aninal
         [HttpDelete("{animalId}")]
         public IActionResult DeleteAnimal(int animalId)
