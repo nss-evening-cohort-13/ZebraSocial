@@ -59,5 +59,19 @@ namespace ZebraSocial.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}/update")]
+        public IActionResult UpdatePaymentInfo(int id, PaymentInfo paymentInfoObj)
+        {
+            var paymentInfo = _repo.Get(id);
+            paymentInfo.FirstName = paymentInfoObj.FirstName;
+            paymentInfo.LastName = paymentInfoObj.LastName;
+            paymentInfo.CardNumber = paymentInfoObj.CardNumber;
+            paymentInfo.ExpMonth = paymentInfoObj.ExpMonth;
+            paymentInfo.ExpYear = paymentInfoObj.ExpYear;
+            paymentInfo.CVV = paymentInfoObj.CVV;
+            _repo.Update(paymentInfo);
+            return NoContent();
+        }
+
     }
 }

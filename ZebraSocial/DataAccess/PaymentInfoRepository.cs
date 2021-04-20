@@ -62,5 +62,19 @@ namespace ZebraSocial.DataAccess
 
             db.Execute(sql, new { id });
         }
+
+        public void Update(PaymentInfo paymentInfo)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"UPDATE [PaymentInfo]
+                        SET FirstName = @FirstName,
+                            LastName = @LastName,
+	                        CardNumber = @CardNumber,
+	                        ExpMonth = @ExpMonth,
+	                        ExpYear = @ExpYear,
+                            CVV= @CVV
+                        WHERE id = @id";
+            db.Execute(sql, paymentInfo);
+        }
     }
 }
