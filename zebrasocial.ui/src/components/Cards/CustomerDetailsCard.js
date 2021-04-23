@@ -43,6 +43,7 @@ export default function CustomerDetailsCard({ customer, payment }) {
                                         <h6 className="text-muted f-w-400">CVV: {payment.cvv}</h6>
                                     </div>
                                 </div>
+                                <button type="button" className="btn btn-warning">Edit Info</button>
                             </div>
                         </div>
                     </div>
