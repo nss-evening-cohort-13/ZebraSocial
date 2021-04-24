@@ -1,8 +1,15 @@
 @import 'variables';
+@import 'products';
+@import 'profile';
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import 'navbar.scss';
 
 
-body {
-  background-color: $favColor;
+body { 
+  background: $backgroundIMG no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }

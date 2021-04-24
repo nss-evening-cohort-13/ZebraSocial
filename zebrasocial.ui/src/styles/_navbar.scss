@@ -1,6 +1,7 @@
 .my-nav {
     display: flex;
     position: absolute;
+    
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
@@ -13,6 +14,10 @@
       display: none;
     }
   }
+  .my-nav {
+    z-index: 9999;
+}
+
   .my-nav {
     z-index: 9999;
 }
