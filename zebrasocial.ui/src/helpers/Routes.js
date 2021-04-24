@@ -11,10 +11,11 @@ import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
+// stupid routes
 
 export default function Routes() {
   return (
-        <Switch>
+    <Switch>
       <Route exact path='/' component={Home} />
       <Route exact path='/zebras' component={Zebras} />
       <Route exact path='/zebras/:id' component={ZebraDetails} />
