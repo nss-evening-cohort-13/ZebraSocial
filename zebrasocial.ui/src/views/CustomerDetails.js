@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import getCustomersById from '../helpers/data/customerData';
 import getPaymentInfoById from '../helpers/data/paymentData';
-import CustomerDetailsCard from '../components/cards/CustomerDetailsCard';
+import CustomerDetailsCard from '../components/Cards/CustomerDetailsCard';
 
 const CustomerDetails = (props) => {
   const [customer, setCustomers] = useState([]);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import productData from '../helpers/data/productData';
-import ProductsCard from '../components/cards/productsCard';
+import ProductsCard from '../components/Cards/productsCard';
 
 export default class ProductCategories extends Component {
     state = {

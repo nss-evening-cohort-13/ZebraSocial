@@ -20,7 +20,8 @@
 
   .products-container {
      position: fixed; left: 30%;
-     display: inline-block;
+     flex-direction: wrap;
+     margin: 50;
   }
   
   .product-card:hover {

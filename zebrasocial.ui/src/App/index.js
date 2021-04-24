@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Routes from '../helpers/routes';
+import Routes from '../helpers/Routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VerticalNavbar from '../components/myNavbar';
 import './App.scss';
