@@ -26,3 +26,9 @@ config.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.vscode/
+package-lock.json
+dist/
+.firebase/
+config.json
