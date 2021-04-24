@@ -76,5 +76,20 @@ namespace ZebraSocial.DataAccess
                         WHERE id = @id";
             db.Execute(sql, paymentInfo);
         }
+        // get customers payment by id
+        public PaymentInfo GetCustomerPayment(int id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+
+            var sql = @"SELECT p.*
+                        FROM  PaymentInfo p
+	                        join CUSTOMERS c
+		                        on c.PaymentId = p.Id
+		                where p.Id = @id";
+
+            var paymentinfo = db.QueryFirstOrDefault<PaymentInfo>(sql, new { id = id });
+
+            return paymentinfo;
+        }
     }
 }
