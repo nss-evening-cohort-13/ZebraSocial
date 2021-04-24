@@ -14,6 +14,7 @@ export default function VerticalNavbar() {
           <li><Link to='/rent'><i className="fas fa-horse icon"></i>Rent An Animal</Link></li>
           <li><Link to='/cart'><i className="fas fa-shopping-cart icon"></i>Cart</Link></li>
           <li><Link to='/customers/:id'><i className="fas fa-user-friends icon"></i>My Profile</Link></li>
+          <li><Link to='/Products'><i className="fas fa-box-open"></i>Our Products</Link></li>
         </ul>
       </div>
       </div>
