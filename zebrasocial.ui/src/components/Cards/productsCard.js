@@ -8,10 +8,10 @@ export default function ProductsCard({ animal }) {
       <div className='card-body'>
         <h1 className='card-title'>{animal.name}</h1>
         <h5>({animal.type})</h5>
-        <p className='card-text'>
+        <h6 className='card-text'>
           {animal.description}
-          <h7>({animal.id})</h7>
-        </p>
+          <p>({animal.id})</p>
+        </h6>
       </div>
     </div>
 </div>

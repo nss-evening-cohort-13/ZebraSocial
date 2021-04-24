@@ -15,7 +15,7 @@ export default class ProductCategories extends Component {
     render() {
       const { animals } = this.state;
       const productList = () => (
-        animals.map((animal) => <ProductsCard key={animals.id} animal={animal} />)
+        animals.map((animal) => <ProductsCard key={animal.id} animal={animal} />)
       );
       return (
         <>
