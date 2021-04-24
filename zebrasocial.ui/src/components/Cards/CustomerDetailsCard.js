@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MyModal from '../AppModal';
+import EditCustomerForm from '../Forms/EditCustomerForm';
 
 export default function CustomerDetailsCard({ customer, payment }) {
   return (
       <div className="profile">
+          <h1>My Profile</h1>
     <div className="page-content page-container leftPad" id="page-content">
     <div className="padding">
         <div className="row container d-flex justify-content-center">
@@ -13,7 +16,7 @@ export default function CustomerDetailsCard({ customer, payment }) {
                         <div className="col-sm-4 bg-c-lite-green user-profile">
                             <div className="card-block text-center text-white">
                                 <div className="m-b-25"> <img src={customer.imageUrl} className="img-radius face" alt="User-Profile-Image"/> </div>
-                                <h3 className="f-w-600">{customer.firstName} {customer.lastName}</h3>
+                                <h3 className="f-w-600 name">{customer.firstName} {customer.lastName}</h3>
                             </div>
                         </div>
                         <div className="col-sm-8">
@@ -22,7 +25,7 @@ export default function CustomerDetailsCard({ customer, payment }) {
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <p className="m-b-10 f-w-600">Event</p>
-                                        <h6 className="text-muted f-w-400">Event Info Here</h6>
+                                        <h6 className="text-muted f-w-400">Order Info</h6>
                                     </div>
                                     <div className="col-sm-6">
                                         <p className="m-b-10 f-w-600">Email</p>
@@ -43,7 +46,12 @@ export default function CustomerDetailsCard({ customer, payment }) {
                                         <h6 className="text-muted f-w-400">CVV: {payment.cvv}</h6>
                                     </div>
                                 </div>
-                                <button type="button" className="btn btn-warning">Edit Info</button>
+                                <MyModal
+                                title={'Edit Info'}
+                                buttonLabel={'Edit Info'}
+                                >
+                                <EditCustomerForm customer={customer} key={customer.id} payment={payment}/>
+                                </MyModal>
                             </div>
                         </div>
                     </div>
