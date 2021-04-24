@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 export default function CustomerDetailsCard({ customer, payment }) {
   return (
       <div className="profile">
-    <div className="page-content page-container" id="page-content">
+    <div className="page-content page-container leftPad" id="page-content">
     <div className="padding">
         <div className="row container d-flex justify-content-center">
-            <div className="col-xl-6 col-md-12">
+            <div >
                 <div className="card user-card-full">
                     <div className="row m-l-0 m-r-0">
                         <div className="col-sm-4 bg-c-lite-green user-profile">
