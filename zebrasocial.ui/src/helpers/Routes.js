@@ -10,6 +10,7 @@ import Orders from '../views/Orders';
 import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
+import ProductCategories from '../views/productCategories';
 
 export default function Routes() {
   return (
@@ -19,6 +20,7 @@ export default function Routes() {
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
       <Route exact path='/orders' component={Orders} />
+      <Route exact path='/Products' component={ProductCategories} />
       <Route exact path='/orders/:id' component={OrderDetails} />
       <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={EventDetails} />
