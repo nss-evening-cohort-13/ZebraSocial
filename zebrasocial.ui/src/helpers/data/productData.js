@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { baseUrl } from '../config.json';
 
-const productsUrl = `${baseUrl}/Animals`;
+const AnimalsUrl = `${baseUrl}/Animals`;
+const EventsUrl = `${baseUrl}/Events`;
 
-const getAllProducts = () => new Promise((resolve, reject) => axios.get(productsUrl).then((response) => resolve(response.data))
+const getAllAnimalProducts = () => new Promise((resolve, reject) => axios.get(AnimalsUrl).then((response) => resolve(response.data))
   .catch((error) => reject(error)));
 
-export default { getAllProducts };
+const getAllEventProducts = () => new Promise((resolve, reject) => axios.get(EventsUrl).then((response) => resolve(response.data))
+  .catch((error) => reject(error)));
+
+export default { getAllAnimalProducts, getAllEventProducts };
