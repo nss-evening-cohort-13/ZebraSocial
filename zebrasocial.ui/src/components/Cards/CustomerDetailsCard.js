@@ -61,6 +61,13 @@ export default function CustomerDetailsCard({ customer, payment }) {
                           </h6>
                         </div>
                       </div>
+                      <MyModal title={'Edit Info'} buttonLabel={'Edit Info'}>
+                        <EditCustomerForm
+                          customer={cust}
+                          key={cust.id}
+                          payment={payment}
+                        />
+                      </MyModal>
                       <h6 className='m-b-20 m-t-40 p-b-5 b-b-default f-w-600'>
                         Payment Info
                       </h6>
@@ -88,7 +95,7 @@ export default function CustomerDetailsCard({ customer, payment }) {
                           </h6>
                         </div>
                       </div>
-                      <MyModal title={'Edit Info'} buttonLabel={'Edit Info'}>
+                      <MyModal title={'Edit Payment'} buttonLabel={'Edit Payment'}>
                         <EditCustomerForm
                           customer={cust}
                           key={cust.id}
