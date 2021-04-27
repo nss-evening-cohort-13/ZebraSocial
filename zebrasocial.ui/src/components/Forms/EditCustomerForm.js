@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import updateCustomerInfo from '../../helpers/data/customerData';
+import { updateCustomerInfo } from '../../helpers/data/customerData';
 
 export default function EditCustomerForm({ customer }) {
   const {
@@ -12,7 +12,7 @@ export default function EditCustomerForm({ customer }) {
   // const onSubmit = (data) => console.log('data', data);
 
   const onSubmit = (data) => {
-    const cust = customer.id;
+    const custId = customer.id;
     const parsedId = Number(data.id);
     const parsedPayment = Number(data.paymentId);
     const dataObject = {
@@ -23,7 +23,7 @@ export default function EditCustomerForm({ customer }) {
       imageUrl: data.imageUrl,
       paymentId: parsedPayment
     };
-    updateCustomerInfo.updateCustomerInfo(cust, dataObject)
+    updateCustomerInfo(custId, dataObject)
       .catch((err) => console.warn('nope', err));
   };
 
