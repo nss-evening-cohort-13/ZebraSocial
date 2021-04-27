@@ -9,4 +9,5 @@ const getPaymentInfoById = (customerId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getPaymentInfoById };
+// eslint-disable-next-line import/prefer-default-export
+export { getPaymentInfoById };
