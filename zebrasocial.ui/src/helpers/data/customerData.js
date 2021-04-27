@@ -18,4 +18,6 @@ const getAllCustomers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getCustomerById, getAllCustomers };
+const updateCustomerInfo = (customerId, updatedCustomer) => axios.put(`${customerUrl}/${customerId}/update`, updatedCustomer);
+
+export { getCustomerById, getAllCustomers, updateCustomerInfo };
