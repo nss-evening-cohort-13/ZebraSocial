@@ -32,11 +32,18 @@ const CustomerDetails = (props) => {
   const showCustomers = () => (
      <CustomerDetailsCard key={customer.id} customer={customer} payment={payment} />
   );
-
+  console.log(props.user);
   return (
-    <div>
+    <>{ props.user ? (
+      <div>
       {showCustomers()}
     </div>
+    ) : (
+      <div>
+        {showCustomers()}
+      </div>
+    )}
+    </>
   );
 };
 
@@ -47,5 +54,6 @@ CustomerDetails.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.any
     })
-  })
+  }),
+  user: PropTypes.any
 };

@@ -11,7 +11,7 @@ namespace ZebraSocial.Controllers
 {
     [Route("api/Customers")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CustomersController : FirebaseEnabledController
     {
         CustomerRepository _repo;
             public CustomersController()

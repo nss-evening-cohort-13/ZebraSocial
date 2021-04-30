@@ -11,7 +11,7 @@ namespace ZebraSocial.Controllers
 {
     [Route("api/Events")]
     [ApiController]
-    public class EventsController : ControllerBase
+    public class EventsController : FirebaseEnabledController
     {
         EventRepository _repo;
         

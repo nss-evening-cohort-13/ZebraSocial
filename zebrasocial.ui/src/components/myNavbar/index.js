@@ -1,7 +1,12 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
 
 export default function VerticalNavbar() {
+  const logMeOut = (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
+  };
   return (
     <>
     <div className='my-nav position-absolute'>
@@ -17,6 +22,7 @@ export default function VerticalNavbar() {
           <li><Link to='/Products'><i className="fas fa-box-open"></i>Our Products</Link></li>
         </ul>
       </div>
+      <div className='nav-link btn btn-danger' onClick={(e) => logMeOut(e)}>Logout</div>
       </div>
   </>
   );

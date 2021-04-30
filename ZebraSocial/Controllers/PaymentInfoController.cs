@@ -12,7 +12,7 @@ namespace ZebraSocial.Controllers
 {
     [Route("api/PaymentInfo")]
     [ApiController]
-    public class PaymentInfoController : ControllerBase
+    public class PaymentInfoController : FirebaseEnabledController
     {
         PaymentInfoRepository _repo;
 
