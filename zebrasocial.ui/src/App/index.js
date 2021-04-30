@@ -6,20 +6,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import VerticalNavbar from '../components/myNavbar';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
-import { setCurrentUser } from '../helpers/data/customerData';
 
 fbConnection();
 
 class App extends React.Component {
   state = {
     user: null,
-    userId: null,
+    uid: [],
   };
 
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser(user);
+        this.setState({ uid: user.uid });
         user
           .getIdToken()
           .then((token) => window.sessionStorage.setItem('token', token));
@@ -29,11 +28,6 @@ class App extends React.Component {
         this.setState({ user: false });
       }
     });
-    const getUid = () => firebase.auth().currentUser?.uid;
-    const userId = getUid();
-    this.setState({
-      userId
-    });
   }
 
   componentWillUnmount() {
@@ -41,11 +35,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { user, userId } = this.state;
+    const { user, uid } = this.state;
     return (
     <div className='App'>
       <Router>
-        <VerticalNavbar user={user} userId={userId} />
+        <VerticalNavbar user={user} uid={ uid } />
         <Routes user={user} />
       </Router>
     </div>

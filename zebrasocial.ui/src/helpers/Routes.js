@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CustomerDetails from '../views/CustomerDetails';
@@ -12,9 +12,27 @@ import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
+
+import { getCustomerById } from './data/customerData';
+import getUid from './data/authData';
 // stupid routes
 
 export default function Routes({ user }) {
+  const [customer, setCustomers] = useState([]);
+
+  const getCustomer = () => {
+    const customerId = getUid();
+    getCustomerById(customerId).then((response) => {
+      const singleCustomer = response;
+      setCustomers(singleCustomer);
+    })
+      .catch((err) => console.warn('nope', err));
+  };
+
+  useEffect(() => {
+    // const customerId = getUid();
+    getCustomer();
+  }, []);
   return (
     <Switch>
       <Route exact path='/' component={() => <Home user={user} />} />
@@ -27,7 +45,7 @@ export default function Routes({ user }) {
       <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={EventDetails} />
       <Route exact path='/customers' component={Customers} />
-      <Route exact path='/customers/:id' component={CustomerDetails} user={user}/>
+      <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
     </Switch>
   );
 }

@@ -34,7 +34,7 @@ namespace ZebraSocial.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCustomerById(int id)
+        public IActionResult GetCustomerById(string id)
         {
             var OneCustomer = _repo.GetCustomerById(id);
 
@@ -58,7 +58,7 @@ namespace ZebraSocial.Controllers
         // Soft delete customer 
         [HttpDelete("{customerId}")]
         // api/events/{customerId}
-        public IActionResult DeleteCustomer(int customerId)
+        public IActionResult DeleteCustomer(string customerId)
         {
 
             _repo.Remove(customerId);

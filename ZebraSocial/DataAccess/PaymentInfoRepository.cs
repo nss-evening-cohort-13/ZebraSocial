@@ -85,7 +85,7 @@ namespace ZebraSocial.DataAccess
                         FROM  PaymentInfo p
 	                        join CUSTOMERS c
 		                        on c.PaymentId = p.Id
-		                where p.Id = @id";
+		                where c.PaymentId = @id";
 
             var paymentinfo = db.QueryFirstOrDefault<PaymentInfo>(sql, new { id = id });
 

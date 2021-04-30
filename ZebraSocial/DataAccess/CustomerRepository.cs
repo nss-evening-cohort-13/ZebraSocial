@@ -38,11 +38,11 @@ namespace ZebraSocial.DataAccess
             customer.Id = id;
         }
 
-        public Customer GetCustomerById(int id)
+        public Customer GetCustomerById(string id)
         {
             var sql = @"select *
                         from [Customers]
-                        where Id = @id";
+                        where firebaseId = @id";
 
             using var db = new SqlConnection(ConnectionString);
 
@@ -64,7 +64,7 @@ namespace ZebraSocial.DataAccess
 
             db.Execute(sql, OneCustomer);
         }
-        public void Remove(int id)
+        public void Remove(string id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = @"UPDATE [Customers]
@@ -75,7 +75,7 @@ namespace ZebraSocial.DataAccess
                         ImageUrl = Null,
                         PaymentId = Null,
                         FirebaseId = Null
-                        WHERE Id = @id";
+                        WHERE firebaseId = @id";
             var OneCustomer = GetCustomerById(id);
 
             db.Execute(sql, OneCustomer);
