@@ -66,6 +66,13 @@ namespace ZebraSocial.Controllers
             return Ok();
         }
 
+        /*[HttpPut("{id}/update/{PaymentId}")]
+        public IActionResult UpdatePaymentId(Customer OneCustomer)
+        {
+            _repo.updatePaymentId(OneCustomer);
+            return Ok();
+        }*/
+
 
     }
 }
