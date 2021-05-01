@@ -12,7 +12,7 @@ namespace ZebraSocial.Controllers
 {
     [Route("api/Animals")]
     [ApiController]
-    public class AnimalsController : ControllerBase
+    public class AnimalsController : FirebaseEnabledController
     {
         AnimalRepository _repo;
 

@@ -6,7 +6,7 @@ import ProductsCard from '../components/Cards/productsCard';
 class SearchResults extends Component {
     state = {
       results: [],
-      searchTerm: ''
+      searchName: ''
     }
 
     componentDidMount() {
@@ -14,19 +14,18 @@ class SearchResults extends Component {
     }
 
      populateResults = () => {
-       const searchTerm = this.props.match.params.term;
-
-       productData.getSearchedProducts(searchTerm.toLowerCase())
+       const searchName = this.props.match.params.term;
+       productData.getSearchedProducts(searchName.toLowerCase())
          .then((response) => {
            this.setState({
              results: response,
-             searchTerm
+             searchName
            });
          });
      }
 
      componentDidUpdate(prevState) {
-       if (prevState.searchTerm !== this.props.match.params.term) {
+       if (prevState.searchName !== this.props.match.params.term) {
          this.populateResults();
        }
      }
@@ -36,15 +35,12 @@ class SearchResults extends Component {
 
        const showResults = () => (
          results.map((result) => (
-          <ProductsCard key={result.id} animal={result} />
+             <ProductsCard key={result.id} animal={result} />
          ))
        );
        return (
         <div className="Animals-products">
-        <h1>Search Results</h1>
-        <div className="animals">
-          </div>
-          <div className="product-cards-container">
+          <div className="products-container">
           {showResults()}
         </div>
       </div>

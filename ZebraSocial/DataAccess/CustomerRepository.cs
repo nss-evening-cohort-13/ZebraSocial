@@ -28,9 +28,9 @@ namespace ZebraSocial.DataAccess
 
         public void Add(Customer customer)
         {
-            var sql = @"INSERT INTO [dbo].[Customers] ([firstName],[lastName],[email],[imageUrl],[paymentId])
+            var sql = @"INSERT INTO [dbo].[Customers] ([firstName],[lastName],[email],[imageUrl],[firebaseId])
                         OUTPUT inserted.Id
-                        VALUES(@firstName ,@lastName ,@email ,@imageUrl ,@paymentId)";
+                        VALUES(@firstName ,@lastName ,@email ,@imageUrl ,@firebaseId)";
            
            var db = new SqlConnection(ConnectionString);
            var id = db.ExecuteScalar<int>(sql, customer);
@@ -38,11 +38,11 @@ namespace ZebraSocial.DataAccess
             customer.Id = id;
         }
 
-        public Customer GetCustomerById(int id)
+        public Customer GetCustomerById(string id)
         {
             var sql = @"select *
                         from [Customers]
-                        where Id = @id";
+                        where firebaseId = @id";
 
             using var db = new SqlConnection(ConnectionString);
 
@@ -59,13 +59,12 @@ namespace ZebraSocial.DataAccess
                         SET FirstName = @FirstName,
                             LastName = @LastName,
 	                        Email = @Email,
-	                        ImageUrl = @ImageUrl,
-	                        PaymentId = @PaymentId
+	                        ImageUrl = @ImageUrl
                         WHERE Id = @id";
 
             db.Execute(sql, OneCustomer);
         }
-        public void Remove(int id)
+        public void Remove(string id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = @"UPDATE [Customers]
@@ -74,8 +73,9 @@ namespace ZebraSocial.DataAccess
                         LastName = Null,
                         Email = Null,
                         ImageUrl = Null,
-                        PaymentId = Null
-                        WHERE Id = @id";
+                        PaymentId = Null,
+                        FirebaseId = Null
+                        WHERE firebaseId = @id";
             var OneCustomer = GetCustomerById(id);
 
             db.Execute(sql, OneCustomer);

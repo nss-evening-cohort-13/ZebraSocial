@@ -25,7 +25,7 @@ class SearchBar extends Component {
    render() {
      return (
       <form onSubmit={this.handleSubmit}>
-      <input type='text' name='text' value={this.state.text} onChange={this.handleChange} />
+      <input placeholder='search products' type='text' name='text' value={this.state.text} onChange={this.handleChange} />
     </form>
      );
    }

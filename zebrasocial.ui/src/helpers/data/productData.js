@@ -12,7 +12,7 @@ const getAllEventProducts = () => new Promise((resolve, reject) => axios.get(Eve
 
 const getSearchedProducts = (searchTerm) => new Promise((resolve, reject) => axios
   .get(`${AnimalsUrl}`).then((response) => {
-    const searched = response.data.filter((animal) => animal.title.toLowerCase().includes(searchTerm));
+    const searched = response.data.filter((animal) => animal.name.toLowerCase().includes(searchTerm));
     resolve(searched);
   }).catch((error) => reject(error)));
 
