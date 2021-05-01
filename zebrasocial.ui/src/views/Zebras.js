@@ -19,7 +19,7 @@ export default class AnimalsCategories extends Component {
       );
       return (
         <>
-          <div className='animal-container'>
+          <div className='animal'>
             <div>
         <h3>Pick Your Animal</h3>
         {animalList()}

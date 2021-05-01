@@ -10,4 +10,10 @@ const getAllAnimalProducts = () => new Promise((resolve, reject) => axios.get(An
 const getAllEventProducts = () => new Promise((resolve, reject) => axios.get(EventsUrl).then((response) => resolve(response.data))
   .catch((error) => reject(error)));
 
-export default { getAllAnimalProducts, getAllEventProducts };
+const getSearchedProducts = (searchTerm) => new Promise((resolve, reject) => axios
+  .get(`${AnimalsUrl}`).then((response) => {
+    const searched = response.data.filter((animal) => animal.name.toLowerCase().includes(searchTerm));
+    resolve(searched);
+  }).catch((error) => reject(error)));
+
+export default { getAllAnimalProducts, getAllEventProducts, getSearchedProducts };

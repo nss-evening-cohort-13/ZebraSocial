@@ -12,6 +12,7 @@ import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
+import SearchResults from '../views/searchResults';
 
 import { getCustomerById } from './data/customerData';
 import getUid from './data/authData';
@@ -45,6 +46,7 @@ export default function Routes({ user }) {
       <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={EventDetails} />
       <Route exact path='/customers' component={Customers} />
+      <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
     </Switch>
   );

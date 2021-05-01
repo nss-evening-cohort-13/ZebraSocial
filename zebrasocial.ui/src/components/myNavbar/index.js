@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import SearchBar from '../searchBar';
 import { getCustomerById } from '../../helpers/data/customerData';
 import getUid from '../../helpers/data/authData';
 
@@ -33,6 +34,7 @@ export default function VerticalNavbar({ uid }) {
           <Link to='/'>Navigation</Link>
         </div>
         <ul className='nav-links'>
+          <SearchBar />
           <li><Link to='/'><i className="fas fa-home icon"></i>Home</Link></li>
           <li><Link to='/zebras'><i className="fas fa-horse icon"></i>Rent An Animal</Link></li>
           <li><Link to='/orders/:id'><i className="fas fa-shopping-cart icon"></i>Cart</Link></li>
