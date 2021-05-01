@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getCustomerById } from '../../helpers/data/customerData';
+import { getPaymentInfoById } from '../../helpers/data/paymentData';
 import MyModal from '../AppModal';
 import EditCustomerForm from '../Forms/EditCustomerForm';
 
 export default function CustomerDetailsCard({ customer, payment }) {
   const [cust, setCustomers] = useState([]);
+  const [pay, setPayments] = useState([]);
 
   const getCustomer = (customerId) => {
     getCustomerById(customerId)
@@ -15,10 +17,19 @@ export default function CustomerDetailsCard({ customer, payment }) {
       })
       .catch((err) => console.warn('nope', err));
   };
+  const getPayment = (customerId) => {
+    getPaymentInfoById(customerId).then((response) => {
+      const paymentInfo = response;
+      setPayments(paymentInfo);
+    })
+      .catch((err) => console.warn('nope', err));
+  };
 
   useEffect(() => {
-    const customerId = customer.id;
+    const customerId = customer.firebaseId;
     getCustomer(customerId);
+    const customerPayment = customer.paymentId;
+    getPayment(customerPayment);
   }, [cust]);
   return (
     <div className='profile'>
@@ -65,33 +76,33 @@ export default function CustomerDetailsCard({ customer, payment }) {
                         <EditCustomerForm
                           customer={cust}
                           key={cust.id}
-                          payment={payment}
+                          pay={pay}
                         />
                       </MyModal>
                       <h6 className='m-b-20 m-t-40 p-b-5 b-b-default f-w-600'>
-                        Payment Info
+                        pay Info
                       </h6>
                       <div className='row'>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Name On Card</p>
                           <h6 className='text-muted f-w-400'>
-                            <b>First:</b> {payment.firstName}
+                            <b>First:</b> {pay.firstName}
                           </h6>
                           <h6 className='text-muted f-w-400'>
-                            <b>Last:</b> {payment.lastName}
+                            <b>Last:</b> {pay.lastName}
                           </h6>
                         </div>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Card Info</p>
                           <h6 className='text-muted f-w-400'>
-                            {payment.cardNumber}
+                            {pay.cardNumber}
                           </h6>
                           <h6 className='text-muted f-w-400'>
                             <b>Month: </b>
-                            {payment.expMonth} | <b>Year:</b> {payment.expYear}
+                            {pay.expMonth} | <b>Year:</b> {pay.expYear}
                           </h6>
                           <h6 className='text-muted f-w-400'>
-                            CVV: {payment.cvv}
+                            CVV: {pay.cvv}
                           </h6>
                         </div>
                       </div>

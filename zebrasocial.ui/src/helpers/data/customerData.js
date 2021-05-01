@@ -20,4 +20,6 @@ const getAllCustomers = () => new Promise((resolve, reject) => {
 
 const updateCustomerInfo = (customerId, updatedCustomer) => axios.put(`${customerUrl}/${customerId}/update`, updatedCustomer);
 
-export { getCustomerById, getAllCustomers, updateCustomerInfo };
+export {
+  getCustomerById, getAllCustomers, updateCustomerInfo,
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import getUid from '../helpers/data/authData';
 import { getCustomerById } from '../helpers/data/customerData';
 import { getPaymentInfoById } from '../helpers/data/paymentData';
 import CustomerDetailsCard from '../components/Cards/CustomerDetailsCard';
@@ -24,19 +25,26 @@ const CustomerDetails = (props) => {
   };
 
   useEffect(() => {
-    const customerId = props.match.params.id;
+    const customerId = getUid();
     getCustomer(customerId);
-    getPayment(customerId);
+    const customerPayment = customer.paymentId;
+    getPayment(customerPayment);
   }, []);
 
   const showCustomers = () => (
      <CustomerDetailsCard key={customer.id} customer={customer} payment={payment} />
   );
-
   return (
-    <div>
+    <>{ props.user ? (
+      <div>
       {showCustomers()}
     </div>
+    ) : (
+      <div>
+        <h2>Please Log in</h2>
+      </div>
+    )}
+    </>
   );
 };
 
@@ -47,5 +55,7 @@ CustomerDetails.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.any
     })
-  })
+  }),
+  user: PropTypes.any,
+  customer: PropTypes.any
 };

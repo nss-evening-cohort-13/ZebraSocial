@@ -13,7 +13,7 @@ namespace ZebraSocial.Models
         public string Email { get; set; }
         public string ImageUrl { get; set; }
         public int PaymentId { get; set; }
-
+        public string FirebaseId { get; set; }
 
     }
 }
