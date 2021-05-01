@@ -4,8 +4,9 @@ import { getCustomerById } from '../../helpers/data/customerData';
 import { getPaymentInfoById } from '../../helpers/data/paymentData';
 import MyModal from '../AppModal';
 import EditCustomerForm from '../Forms/EditCustomerForm';
+import EditPaymentForm from '../Forms/EditPaymentForm';
 
-export default function CustomerDetailsCard({ customer, payment }) {
+export default function CustomerDetailsCard({ customer }) {
   const [cust, setCustomers] = useState([]);
   const [pay, setPayments] = useState([]);
 
@@ -30,7 +31,7 @@ export default function CustomerDetailsCard({ customer, payment }) {
     getCustomer(customerId);
     const customerPayment = customer.paymentId;
     getPayment(customerPayment);
-  }, [cust]);
+  }, [cust], [pay]);
   return (
     <div className='profile'>
       <h1>My Profile</h1>
@@ -76,11 +77,10 @@ export default function CustomerDetailsCard({ customer, payment }) {
                         <EditCustomerForm
                           customer={cust}
                           key={cust.id}
-                          pay={pay}
                         />
                       </MyModal>
                       <h6 className='m-b-20 m-t-40 p-b-5 b-b-default f-w-600'>
-                        pay Info
+                        Payment Info
                       </h6>
                       <div className='row'>
                         <div className='col-sm-6'>
@@ -107,10 +107,10 @@ export default function CustomerDetailsCard({ customer, payment }) {
                         </div>
                       </div>
                       <MyModal title={'Edit Payment'} buttonLabel={'Edit Payment'}>
-                        <EditCustomerForm
+                        <EditPaymentForm
                           customer={cust}
-                          key={cust.id}
-                          payment={payment}
+                          key={pay.id}
+                          payment={pay}
                         />
                       </MyModal>
                     </div>

@@ -59,7 +59,8 @@ namespace ZebraSocial.DataAccess
                         SET FirstName = @FirstName,
                             LastName = @LastName,
 	                        Email = @Email,
-	                        ImageUrl = @ImageUrl
+	                        ImageUrl = @ImageUrl,
+                            PaymentId = @PaymentId
                         WHERE Id = @id";
 
             db.Execute(sql, OneCustomer);
@@ -80,6 +81,19 @@ namespace ZebraSocial.DataAccess
 
             db.Execute(sql, OneCustomer);
         }
+
+        /*public void updatePaymentId(Customer OneCustomer)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"UPDATE [dbo].[Customers]
+                        FirstName = @FirstName,
+                        LastName = @LastName,
+                        Email = @Email,
+                        ImageUrl = @ImageUrl,
+                        PaymentId = @PaymentId,
+                        WHERE FirebaseId = @id";
+            db.Execute(sql, OneCustomer);
+        }*/
 
     }
 

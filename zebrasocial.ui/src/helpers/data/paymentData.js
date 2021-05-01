@@ -3,11 +3,12 @@ import { baseUrl } from '../config.json';
 
 const paymentUrl = `${baseUrl}/paymentInfo`;
 
-const getPaymentInfoById = (customerId) => new Promise((resolve, reject) => {
-  axios.get(`${paymentUrl}/${customerId}/payInfo`).then((response) => {
+const getPaymentInfoById = (paymentId) => new Promise((resolve, reject) => {
+  axios.get(`${paymentUrl}/${paymentId}/payInfo`).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });
 
-// eslint-disable-next-line import/prefer-default-export
-export { getPaymentInfoById };
+const updatePaymentInfo = (paymentId, updatedPayment) => axios.put(`${paymentUrl}/${paymentId}/update`, updatedPayment);
+
+export { getPaymentInfoById, updatePaymentInfo };

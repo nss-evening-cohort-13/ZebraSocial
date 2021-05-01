@@ -10,7 +10,7 @@ export default function AnimalsCard({ animal }) {
         <h5>({animal.type})</h5>
         <p className='card-text'>
           {animal.description}
-          <h7>({animal.id})</h7>
+          <h5>({animal.id})</h5>
         </p>
       </div>
     </div>
