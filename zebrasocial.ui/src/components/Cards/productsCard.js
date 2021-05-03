@@ -5,8 +5,8 @@ export default function ProductsCard({ animal }) {
   return (
     <div className='product-container'>
     <div className='product-card m-2'>
-      <div className='card-body'>
-        <h1 className='card-title'>{animal.name}</h1>
+      <div className='card-body embed-responsive embed-responsive-16by9'>
+      <img src={animal.imageUrl} className='image embed-responsive-item'/>
         <h5>({animal.type})</h5>
         <h6 className='card-text'>
           {animal.description}
