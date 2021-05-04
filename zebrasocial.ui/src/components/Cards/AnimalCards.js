@@ -13,10 +13,10 @@ export default function AnimalsCard({ animal }) {
         <p className='card-text'>
           {animal.description}
         </p>
-        <MyModal title={'Add Event'} buttonLabel={'Add Event'}>
+        <MyModal title={`You Picked ${animal.name}!`} buttonLabel={'Add Event'}>
                         <EditEventForm
                           key={animal.id}
-                          animalName={animal.name}
+                          animal={animal}
                         />
                       </MyModal>
       </div>
