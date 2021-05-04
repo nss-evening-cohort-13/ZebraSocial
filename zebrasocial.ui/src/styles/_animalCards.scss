@@ -1,6 +1,6 @@
 .animals-card {
     background-color: var(--background);
-    display: inline-block;
+    display: flex;
     display: block;
     width: 300px;
     min-height: 90px;
@@ -18,7 +18,15 @@
     cursor: pointer;
   }
   
+  .a-container {
+    display: flex;
+    justify-content: row wrap space-between;
+    margin: 50px;
+  }
+  
   .animal {
+    display: flex;
+    justify-content: wrap;
     position: fixed; left: 30%;
     flex-direction: wrap;
     margin: 50;
@@ -30,6 +38,7 @@
      flex-direction: wrap;
      margin: 50;
      justify-content: space-between;
+     margin-right: 50px;
   }
 
   .animals-card:hover {
