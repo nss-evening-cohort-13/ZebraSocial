@@ -38,9 +38,9 @@ export default function App({ animal }) {
        min="2021-06-14T00:00" max="2300-06-14T00:00" {...register('date', { required: true })} />
         <h5>Length</h5>
         <select {...register('length', { required: true })}>
-        <option value={1}>Full Day</option>
-        <option value={2}>Half Day Morning</option>
-        <option value={3}>Half Day Evening</option>
+        <option value={0}>Full Day</option>
+        <option value={1}>Half Day Morning</option>
+        <option value={2}>Half Day Evening</option>
       </select>
         <h5>Location</h5>
       <input {...register('location', { required: true })} />
