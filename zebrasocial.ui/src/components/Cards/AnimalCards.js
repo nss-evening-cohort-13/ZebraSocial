@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MyModal from '../AppModal';
+import EditEventForm from '../Forms/EditEventForm';
 
 export default function AnimalsCard({ animal }) {
   return (
@@ -10,8 +12,13 @@ export default function AnimalsCard({ animal }) {
         <h5>({animal.type})</h5>
         <p className='card-text'>
           {animal.description}
-          <h5>({animal.id})</h5>
         </p>
+        <MyModal title={'Add Event'} buttonLabel={'Add Event'}>
+                        <EditEventForm
+                          key={animal.id}
+                          animalName={animal.name}
+                        />
+                      </MyModal>
       </div>
     </div>
 </div>
