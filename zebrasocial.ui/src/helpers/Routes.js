@@ -37,7 +37,7 @@ export default function Routes({ user }) {
   return (
     <Switch>
       <Route exact path='/' component={() => <Home user={user} />} />
-      <Route exact path='/zebras' component={Zebras} />
+      <Route exact path='/zebras' component={() => <Zebras user={user} customer={customer} />} />
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
       <Route exact path='/orders' component={Orders} />
