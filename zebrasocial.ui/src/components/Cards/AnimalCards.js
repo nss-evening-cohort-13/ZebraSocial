@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MyModal from '../AppModal/index';
+import MyModal from '../AppModal';
+import EditEventForm from '../Forms/EditEventForm';
 
 export default function AnimalsCard({ animal }) {
   return (
@@ -11,9 +12,13 @@ export default function AnimalsCard({ animal }) {
         <h5>({animal.type})</h5>
         <p className='card-text'>
           {animal.description}
-          <h5>({animal.id})</h5>
         </p>
-      </div>
+        <MyModal title={`You Picked ${animal.name}!`} buttonLabel={'Add Event'}>
+                        <EditEventForm
+                          key={animal.id}
+                          animal={animal}
+                        />
+                      </MyModal>
       <MyModal title={'About This Rental'} buttonLabel={'Click Here For Details'}>
       <div className='card-body embed-responsive embed-responsive-16by9'>
         <img src={animal.imageUrl} className='image embed-responsive-item'/>
@@ -24,6 +29,7 @@ export default function AnimalsCard({ animal }) {
         <h4 className='card-title'>Price: {animal.price}</h4>
         <h4 className='card-title'>Description: {animal.description}</h4>
       </MyModal>
+      </div>
     </div>
 </div>
   );

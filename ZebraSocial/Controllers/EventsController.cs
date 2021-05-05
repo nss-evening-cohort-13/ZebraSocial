@@ -30,6 +30,33 @@ namespace ZebraSocial.Controllers
         // api/events
         public IActionResult AddEvent(Event yourEvent)
         {
+            //standard switch statement
+            /*switch (yourEvent.Length)
+            {
+                case Length.FullDay:
+                    yourEvent.Price = 200.00M;
+                    break;
+            }*/
+
+            //switch expression
+            yourEvent.Price = yourEvent.Length switch
+            {
+                Length.FullDay => 2320.00m,
+                Length.HalfDayEvening => 1500.00m,
+                Length.HalfDayMorning => 1125.00m,
+                _ => 100000
+            };
+
+
+            /*var lengthType = yourEvent.Length;
+            if(lengthType == Length.FullDay)
+            {
+                yourEvent.Price = 200.00M;
+            }
+            if (lengthType == Length.HalfDayEvening)
+            {
+                yourEvent.Price = 200.00M;
+            }*/
             _repo.Add(yourEvent);
             return Created($"api/Events/{yourEvent.Id}", yourEvent);
         }

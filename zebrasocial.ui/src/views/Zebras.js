@@ -15,13 +15,13 @@ export default class AnimalsCategories extends Component {
     render() {
       const { animals } = this.state;
       const animalList = () => (
-        animals.map((animal) => <AnimalsCard key={animals.id} animal={animal} />)
+        animals.map((animal) => <AnimalsCard key={animal.id} animal={animal} />)
       );
       return (
         <>
           <div className='animal'>
-            <div className='a-container'>
         <h3>Pick Your Animal</h3>
+            <div className='a-container'>
         {animalList()}
             </div>
          </div>
