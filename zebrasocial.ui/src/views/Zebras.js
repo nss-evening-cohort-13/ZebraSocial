@@ -15,7 +15,7 @@ export default class AnimalsCategories extends Component {
     render() {
       const { animals } = this.state;
       const animalList = () => (
-        animals.map((animal) => <AnimalsCard key={animals.id} animal={animal} />)
+        animals.map((animal) => <AnimalsCard key={animal.id} animal={animal} />)
       );
       return (
         <>

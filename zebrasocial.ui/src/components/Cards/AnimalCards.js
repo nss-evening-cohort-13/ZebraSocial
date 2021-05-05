@@ -19,7 +19,6 @@ export default function AnimalsCard({ animal }) {
                           animal={animal}
                         />
                       </MyModal>
-      </div>
       <MyModal title={'About This Rental'} buttonLabel={'Click Here For Details'}>
       <div className='card-body embed-responsive embed-responsive-16by9'>
         <img src={animal.imageUrl} className='image embed-responsive-item'/>
@@ -30,6 +29,7 @@ export default function AnimalsCard({ animal }) {
         <h4 className='card-title'>Price: {animal.price}</h4>
         <h4 className='card-title'>Description: {animal.description}</h4>
       </MyModal>
+      </div>
     </div>
 </div>
   );

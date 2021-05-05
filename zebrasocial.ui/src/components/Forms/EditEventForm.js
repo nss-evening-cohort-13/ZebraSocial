@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { addEvent } from '../../helpers/data/eventData';
+import getUid from '../../helpers/data/authData';
 
 export default function App({ animal }) {
   const {
@@ -9,6 +10,7 @@ export default function App({ animal }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const currentUser = getUid();
 
   const onSubmit = (data) => {
     const parsedId = Number(data.animalId);
@@ -19,7 +21,8 @@ export default function App({ animal }) {
       type: data.type,
       date: data.date,
       length: parsedLength,
-      location: data.location
+      location: data.location,
+      customerId: currentUser
     };
     addEvent(dataObject)
       .catch((err) => console.warn('nope', err));

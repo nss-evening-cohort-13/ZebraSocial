@@ -15,7 +15,7 @@ namespace ZebraSocial.Models
         public Length Length { get; set; }
         public string Location { get; set; }
         public decimal Price { get; set; }
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
     }
     public enum Length
