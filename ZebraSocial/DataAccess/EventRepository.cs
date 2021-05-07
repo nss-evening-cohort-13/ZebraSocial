@@ -90,5 +90,17 @@ namespace ZebraSocial.DataAccess
             var results = db.Query<Event>(sql, new { id }).ToList();
             return results;
         }
+
+        public Animal GetAnimal(string id)
+        {
+            var sql = @"SELECT a.*
+                        FROM Events e
+	                        join Animals a
+		                        on e.AnimalId = a.Id
+                        WHERE CustomerId = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var yourAnimal = db.QueryFirstOrDefault<Animal>(sql, new { id });
+            return yourAnimal;
+        }
     }
 }

@@ -77,7 +77,7 @@ export default function CustomerDetailsCard({ customer }) {
                       <div className='row'>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Event</p>
-                          <Link to={`/events/${customer.firebaseId}`} className='text-muted f-w-400'><Button color="info">Order Info</Button></Link>
+                          <Link to={`/events/${customer.firebaseId}`} className='text-muted f-w-400'><Button color="info">Your Event</Button></Link>
                         </div>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Email</p>

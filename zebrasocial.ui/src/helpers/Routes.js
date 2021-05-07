@@ -15,11 +15,13 @@ import ProductCategories from '../views/productCategories';
 import SearchResults from '../views/searchResults';
 
 import { getCustomerById } from './data/customerData';
+import { getEventById } from './data/eventData';
 import getUid from './data/authData';
 // stupid routes
 
 export default function Routes({ user }) {
   const [customer, setCustomers] = useState([]);
+  const [event, setEvents] = useState([]);
 
   const getCustomer = () => {
     const customerId = getUid();
@@ -30,9 +32,19 @@ export default function Routes({ user }) {
       .catch((err) => console.warn('nope', err));
   };
 
+  const getEvent = () => {
+    const customerId = getUid();
+    getEventById(customerId).then((response) => {
+      const eventInfo = response;
+      setEvents(eventInfo);
+    })
+      .catch((err) => console.warn('nope', err));
+  };
+
   useEffect(() => {
     // const customerId = getUid();
     getCustomer();
+    getEvent();
   }, []);
   return (
     <Switch>
@@ -44,7 +56,7 @@ export default function Routes({ user }) {
       <Route exact path='/Products' component={ProductCategories} />
       <Route exact path='/orders/:id' component={OrderDetails} />
       <Route exact path='/events' component={Events} />
-      <Route exact path='/events/:id' component={EventDetails} />
+      <Route exact path='/events/:id' component={() => <EventDetails user={user} event={event} />} />
       <Route exact path='/customers' component={Customers} />
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>

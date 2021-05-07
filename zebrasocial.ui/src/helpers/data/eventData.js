@@ -11,4 +11,10 @@ const getEventById = (customerId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export { addEvent, getEventById };
+const getZebraById = (customerId) => new Promise((resolve, reject) => {
+  axios.get(`${eventUrl}/${customerId}/animal`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export { addEvent, getEventById, getZebraById };

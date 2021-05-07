@@ -109,5 +109,18 @@ namespace ZebraSocial.Controllers
             };
             return Ok(yourEvent);
         }
+
+        [HttpGet("{id}/animal")]
+        // api/events/{id}
+        public IActionResult GetAnimalByCustomer(string id)
+        {
+            var yourAnimal = _repo.GetAnimal(id);
+
+            if (yourAnimal == null)
+            {
+                return NotFound("The animal you are trying to get could not be found. Sorry...");
+            };
+            return Ok(yourAnimal);
+        }
     }
 }
