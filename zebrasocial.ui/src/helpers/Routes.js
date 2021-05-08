@@ -44,8 +44,11 @@ export default function Routes({ user }) {
   useEffect(() => {
     // const customerId = getUid();
     getCustomer();
+  }, [customer]);
+
+  useEffect(() => {
     getEvent();
-  }, []);
+  }, [event]);
   return (
     <Switch>
       <Route exact path='/' component={() => <Home user={user} />} />

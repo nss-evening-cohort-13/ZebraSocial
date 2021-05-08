@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import getUid from '../../helpers/data/authData';
 import { getCustomerById } from '../../helpers/data/customerData';
 import { getPaymentInfoById } from '../../helpers/data/paymentData';
 import { getEventById } from '../../helpers/data/eventData';
@@ -43,12 +44,17 @@ export default function CustomerDetailsCard({ customer }) {
   };
 
   useEffect(() => {
-    const customerId = customer.firebaseId;
+    const customerId = getUid();
     getCustomer(customerId);
+  }, [cust]);
+  useEffect(() => {
     const customerPayment = customer.paymentId;
     getPayment(customerPayment);
+  }, [pay]);
+  useEffect(() => {
+    const customerId = getUid();
     getEvent(customerId);
-  }, [cust], [pay], [event]);
+  }, [event]);
   return (
     <div className='profile'>
       <h1>My Profile</h1>
