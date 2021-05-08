@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getEventById, getZebraById } from '../helpers/data/eventData';
+import { deleteEvent, getEventById, getZebraById } from '../helpers/data/eventData';
 import getUid from '../helpers/data/authData';
 
 export default class EventDetails extends Component {
@@ -32,6 +32,13 @@ export default class EventDetails extends Component {
     });
   }
 
+  deleteEve = (e) => {
+    deleteEvent(e.target.id);
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 500);
+  }
+
   render() {
     const { zebra, event } = this.state;
     const date = new Date(event.date);
@@ -50,6 +57,7 @@ export default class EventDetails extends Component {
       } return 'No Length';
     };
     return (
+        <>{ event.customerId ? (
       <div className='eventDisplay'>
       <div className="container event-profile">
                 <div className="row">
@@ -65,7 +73,7 @@ export default class EventDetails extends Component {
                                     </h5>
                                     <p className="proile-rating">Total Cost Tax Included: <span>${price()}</span></p>
                             <hr />
-                            <button type="button" className="btn btn-danger">Delete Event</button>
+                            <button type="button" id={event.id} onClick={(e) => { this.deleteEve(e); } } className="btn btn-danger">Delete Event</button>
                         </div>
                     </div>
                     <div className="col-md-2">
@@ -75,53 +83,53 @@ export default class EventDetails extends Component {
                     <div className="col-md-4">
                         <div className="profile-work">
                             <h5>About Animal</h5>
-                            <p><b>Name:</b> {zebra.name}</p>
-                            <p><b>Type:</b> {zebra.type}</p>
-                            <p><b>Specialty:</b> {zebra.eventSpecialty}</p>
-                            <p><b>Description:</b> {zebra.description}</p>
-                            <p><b>Price:</b> ${zebra.price}</p>
+                            <p><b>Name: </b> {zebra.name}</p>
+                            <p><b>Type: </b> {zebra.type}</p>
+                            <p><b>Specialty: </b> {zebra.eventSpecialty}</p>
+                            <p><b>Description: </b> {zebra.description}</p>
+                            <p><b>Price: </b> ${zebra.price}</p>
                         </div>
                     </div>
                     <div className="col-md-8">
                         <div className="tab-content profile-tab" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div className="row">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <label>Event Type:</label>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <p>{event.type}</p>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <label>Date:</label>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <p>{date.toDateString()}</p>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <label>Length:</label>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <p>{lengthConvert()}</p>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <label>Location:</label>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <p>{event.location}</p>
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <label>Price:</label>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <p>${event.price}</p>
                                             </div>
                                         </div>
@@ -178,11 +186,20 @@ export default class EventDetails extends Component {
                     </div>
                 </div>
         </div>
-        </div>
+        </div>) : (
+            <div>
+                <h2> Please Add An Event</h2>
+            </div>
+        )}
+        </>
     );
   }
 }
 
 EventDetails.propTypes = {
-  event: PropTypes.any
+  event: PropTypes.any,
+  user: PropTypes.any,
+  history: PropTypes.shape({
+    push: PropTypes.any
+  })
 };

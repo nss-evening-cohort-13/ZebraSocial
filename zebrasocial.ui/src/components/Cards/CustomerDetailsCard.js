@@ -32,8 +32,12 @@ export default function CustomerDetailsCard({ customer }) {
 
   const getEvent = (customerId) => {
     getEventById(customerId).then((response) => {
-      const eventInfo = response;
-      setEvents(eventInfo);
+      if (response) {
+        const eventInfo = response;
+        setEvents(eventInfo);
+      } else {
+        setEvents(null);
+      }
     })
       .catch((err) => console.warn('nope', err));
   };

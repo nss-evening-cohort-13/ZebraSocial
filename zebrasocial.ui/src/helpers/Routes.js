@@ -56,7 +56,7 @@ export default function Routes({ user }) {
       <Route exact path='/Products' component={ProductCategories} />
       <Route exact path='/orders/:id' component={OrderDetails} />
       <Route exact path='/events' component={Events} />
-      <Route exact path='/events/:id' component={() => <EventDetails user={user} event={event} />} />
+      <Route exact path='/events/:id' component={(props) => <EventDetails user={user} event={event} {...props} />} />
       <Route exact path='/customers' component={Customers} />
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>

@@ -33,7 +33,7 @@ namespace ZebraSocial.DataAccess
             yourEvent.Id = id;
         }
 
-        public void Remove(string id)
+        public void Remove(int id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = @"UPDATE Events
@@ -46,8 +46,8 @@ namespace ZebraSocial.DataAccess
                         Location = Null,
                         Price = Null,
                         CustomerId = Null
-                        WHERE CustomerId = @id";
-            var yourEvent = Get(id);
+                        WHERE Id = @id";
+            var yourEvent = GetId(id);
             
             db.Execute(sql, yourEvent);
         }
@@ -101,6 +101,16 @@ namespace ZebraSocial.DataAccess
             using var db = new SqlConnection(ConnectionString);
             var yourAnimal = db.QueryFirstOrDefault<Animal>(sql, new { id });
             return yourAnimal;
+        }
+
+        public Event GetId(int id)
+        {
+            var sql = @"SELECT *
+                        FROM Events
+                        WHERE Id = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var yourEvent = db.QueryFirstOrDefault<Event>(sql, new { id });
+            return yourEvent;
         }
     }
 }

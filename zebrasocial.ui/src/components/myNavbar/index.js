@@ -28,7 +28,7 @@ export default function VerticalNavbar({ uid }) {
   }, [customer]);
   return (
     <>
-    <div className='my-nav position-absolute'>
+    <div className='my-nav '>
       <div className='nav-items'>
         <div className='nav-brand'>
           <Link to='/'>Navigation</Link>

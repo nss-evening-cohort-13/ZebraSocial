@@ -61,12 +61,12 @@ namespace ZebraSocial.Controllers
             return Created($"api/Events/{yourEvent.Id}", yourEvent);
         }
 
-        [HttpDelete("{eventId}")]
+        [HttpDelete("{id}")]
         // api/events/{eventId}
-        public IActionResult DeleteEvent(string customerId)
+        public IActionResult DeleteEvent(int id)
         {
             
-            _repo.Remove(customerId);
+            _repo.Remove(id);
 
             return Ok();
         }
