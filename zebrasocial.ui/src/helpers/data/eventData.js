@@ -5,5 +5,20 @@ const eventUrl = `${baseUrl}/events`;
 
 const addEvent = (eventObject) => axios.post(eventUrl, eventObject);
 
-// eslint-disable-next-line import/prefer-default-export
-export { addEvent };
+const getEventById = (customerId) => new Promise((resolve, reject) => {
+  axios.get(`${eventUrl}/${customerId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const getZebraById = (customerId) => new Promise((resolve, reject) => {
+  axios.get(`${eventUrl}/${customerId}/animal`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const deleteEvent = (id) => axios.delete(`${eventUrl}/${id}`);
+
+export {
+  addEvent, getEventById, getZebraById, deleteEvent
+};

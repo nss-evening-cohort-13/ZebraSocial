@@ -37,7 +37,7 @@ namespace ZebraSocial.Controllers
                     yourEvent.Price = 200.00M;
                     break;
             }*/
-
+            
             //switch expression
             yourEvent.Price = yourEvent.Length switch
             {
@@ -61,19 +61,19 @@ namespace ZebraSocial.Controllers
             return Created($"api/Events/{yourEvent.Id}", yourEvent);
         }
 
-        [HttpDelete("{eventId}")]
+        [HttpDelete("{id}")]
         // api/events/{eventId}
-        public IActionResult DeleteEvent(int eventId)
+        public IActionResult DeleteEvent(int id)
         {
             
-            _repo.Remove(eventId);
+            _repo.Remove(id);
 
             return Ok();
         }
 
         [HttpGet("{id}")]
         // api/events/{id}
-        public IActionResult GetById(int id)
+        public IActionResult GetById(string id)
         {
             var yourEvent = _repo.Get(id);
 
@@ -95,6 +95,32 @@ namespace ZebraSocial.Controllers
             _repo.Update(yourEvent);
 
             return Ok(yourEvent);
+        }
+
+        [HttpGet("{id}/all")]
+        // api/events/{id}
+        public IActionResult GetAllById(string id)
+        {
+            var yourEvent = _repo.GetAllById(id);
+
+            if (yourEvent == null)
+            {
+                return NotFound("The events you are trying to get can not be found. Sorry...");
+            };
+            return Ok(yourEvent);
+        }
+
+        [HttpGet("{id}/animal")]
+        // api/events/{id}
+        public IActionResult GetAnimalByCustomer(string id)
+        {
+            var yourAnimal = _repo.GetAnimal(id);
+
+            if (yourAnimal == null)
+            {
+                return NotFound("The animal you are trying to get could not be found. Sorry...");
+            };
+            return Ok(yourAnimal);
         }
     }
 }

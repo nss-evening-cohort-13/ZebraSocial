@@ -47,17 +47,17 @@ namespace ZebraSocial.DataAccess
                         Price = Null,
                         CustomerId = Null
                         WHERE Id = @id";
-            var yourEvent = Get(id);
+            var yourEvent = GetId(id);
             
             db.Execute(sql, yourEvent);
         }
 
 
-        public Event Get(int id)
+        public Event Get(string id)
         {
             var sql = @"SELECT *
                         FROM Events
-                        WHERE Id = @id";
+                        WHERE CustomerId = @id";
             using var db = new SqlConnection(ConnectionString);
             var yourEvent = db.QueryFirstOrDefault<Event>(sql, new { id });
             return yourEvent;
@@ -79,6 +79,38 @@ namespace ZebraSocial.DataAccess
 
             using var db = new SqlConnection(ConnectionString);
             db.Execute(sql, yourEvent);
+        }
+
+        public List<Event> GetAllById(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT *
+                        FROM Events
+                        WHERE CustomerId = @id";
+            var results = db.Query<Event>(sql, new { id }).ToList();
+            return results;
+        }
+
+        public Animal GetAnimal(string id)
+        {
+            var sql = @"SELECT a.*
+                        FROM Events e
+	                        join Animals a
+		                        on e.AnimalId = a.Id
+                        WHERE CustomerId = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var yourAnimal = db.QueryFirstOrDefault<Animal>(sql, new { id });
+            return yourAnimal;
+        }
+
+        public Event GetId(int id)
+        {
+            var sql = @"SELECT *
+                        FROM Events
+                        WHERE Id = @id";
+            using var db = new SqlConnection(ConnectionString);
+            var yourEvent = db.QueryFirstOrDefault<Event>(sql, new { id });
+            return yourEvent;
         }
     }
 }

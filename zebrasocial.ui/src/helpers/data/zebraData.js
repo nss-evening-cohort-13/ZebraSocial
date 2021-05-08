@@ -9,4 +9,5 @@ const getZebraById = (zebraId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default getZebraById;
+// eslint-disable-next-line import/prefer-default-export
+export { getZebraById };

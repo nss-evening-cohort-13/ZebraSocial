@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { getCustomerById } from '../../helpers/data/customerData';
 import { getPaymentInfoById } from '../../helpers/data/paymentData';
+import { getEventById } from '../../helpers/data/eventData';
 import MyModal from '../AppModal';
 import EditCustomerForm from '../Forms/EditCustomerForm';
 import EditPaymentForm from '../Forms/EditPaymentForm';
@@ -9,6 +12,7 @@ import EditPaymentForm from '../Forms/EditPaymentForm';
 export default function CustomerDetailsCard({ customer }) {
   const [cust, setCustomers] = useState([]);
   const [pay, setPayments] = useState([]);
+  const [event, setEvents] = useState([]);
 
   const getCustomer = (customerId) => {
     getCustomerById(customerId)
@@ -26,12 +30,25 @@ export default function CustomerDetailsCard({ customer }) {
       .catch((err) => console.warn('nope', err));
   };
 
+  const getEvent = (customerId) => {
+    getEventById(customerId).then((response) => {
+      if (response) {
+        const eventInfo = response;
+        setEvents(eventInfo);
+      } else {
+        setEvents(null);
+      }
+    })
+      .catch((err) => console.warn('nope', err));
+  };
+
   useEffect(() => {
     const customerId = customer.firebaseId;
     getCustomer(customerId);
     const customerPayment = customer.paymentId;
     getPayment(customerPayment);
-  }, [cust], [pay]);
+    getEvent(customerId);
+  }, [cust], [pay], [event]);
   return (
     <div className='profile'>
       <h1>My Profile</h1>
@@ -64,7 +81,7 @@ export default function CustomerDetailsCard({ customer }) {
                       <div className='row'>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Event</p>
-                          <h6 className='text-muted f-w-400'>Order Info</h6>
+                          <Link to={`/events/${customer.firebaseId}`} className='text-muted f-w-400'><Button color="info">Your Event</Button></Link>
                         </div>
                         <div className='col-sm-6'>
                           <p className='m-b-10 f-w-600'>Email</p>

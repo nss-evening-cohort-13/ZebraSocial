@@ -10,7 +10,8 @@
     width: 20%;
     background-color: #C97B84;
     color: #C97B84;
-    @media only screen and (max-width: 600px) {
+    max-width: 184px;
+    @media only screen and (max-width: 400px) {
       display: none;
     }
   }
