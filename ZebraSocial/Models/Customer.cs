@@ -14,6 +14,7 @@ namespace ZebraSocial.Models
         public string ImageUrl { get; set; }
         public int PaymentId { get; set; }
         public string FirebaseId { get; set; }
+        public bool IsAdmin { get; set; }
 
     }
 }

@@ -34,7 +34,7 @@ const CustomerDetails = (props) => {
   }, [payment]);
 
   const showCustomers = () => (
-     <CustomerDetailsCard key={customer.id} customer={customer} payment={payment} />
+     <CustomerDetailsCard key={customer.id} customer={customer} customerPayment={customer.paymentId} payment={payment} />
   );
   return (
     <>{ props.user ? (
