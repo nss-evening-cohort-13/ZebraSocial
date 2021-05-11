@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VerticalNavbar from '../components/myNavbar';
+import { getCustomerById } from '../helpers/data/customerData';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
 
@@ -12,7 +13,7 @@ fbConnection();
 class App extends React.Component {
   state = {
     user: null,
-    uid: [],
+    userDetails: {},
   };
 
   componentDidMount() {
@@ -23,7 +24,9 @@ class App extends React.Component {
           .then((token) => window.sessionStorage.setItem('token', token));
 
         this.setState({ user });
-        this.setState({ uid: user.uid });
+        getCustomerById(user.uid).then((response) => {
+          this.setState({ userDetails: response });
+        });
       } else {
         this.setState({ user: false });
       }
@@ -35,12 +38,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { user, uid } = this.state;
+    const { user, userDetails } = this.state;
+    console.log(userDetails);
     return (
     <div className='App'>
       <Router>
-        <VerticalNavbar user={user} uid={ uid } />
-        <Routes user={user} />
+        <VerticalNavbar user={user} userDetails={userDetails} />
+        <Routes user={user} userDetails={userDetails} />
       </Router>
     </div>
     );

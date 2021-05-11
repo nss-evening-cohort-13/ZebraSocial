@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import SearchBar from '../searchBar';
-import { getCustomerById } from '../../helpers/data/customerData';
 import getUid from '../../helpers/data/authData';
 
-export default function VerticalNavbar({ uid }) {
-  const [customer, setCustomers] = useState([]);
-
+export default function VerticalNavbar({ userDetails }) {
+  const history = useHistory();
   const logMeOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
+    history.push('/');
+    window.location.reload();
   };
-  const getCustomer = () => {
-    const customerId = getUid();
-    getCustomerById(customerId).then((response) => {
-      const singleCustomer = response;
-      setCustomers(singleCustomer);
-    })
-      .catch((err) => console.warn('nope', err));
+
+  const showIfAdmin = () => {
+    if (userDetails.isAdmin === true) {
+      return (<li><Link to='/Products'><i className="fas fa-box-open"></i> Our Products</Link></li>);
+    }
+    return '';
   };
 
   useEffect(() => {
-    // const customerId = getUid();
-    getCustomer();
-  }, [customer]);
+    showIfAdmin();
+  }, []);
+
   return (
     <>
     <div className='my-nav '>
@@ -35,11 +34,11 @@ export default function VerticalNavbar({ uid }) {
         </div>
         <ul className='nav-links'>
           <SearchBar />
-          <li><Link to='/'><i className="fas fa-home icon"></i>Home</Link></li>
-          <li><Link to='/zebras'><i className="fas fa-horse icon"></i>Rent An Animal</Link></li>
-          <li><Link to='/orders/:id'><i className="fas fa-shopping-cart icon"></i>Cart</Link></li>
-          <li><Link to={`/customers/${uid}`}><i className="fas fa-user-friends icon"></i>My Profile</Link></li>
-          <li><Link to='/Products'><i className="fas fa-box-open"></i>Our Products</Link></li>
+          <li><Link to='/'><i className="fas fa-home icon"></i> Home</Link></li>
+          <li><Link to='/zebras'><i className="fas fa-horse icon"></i> Rent An Animal</Link></li>
+          <li><Link to='/orders/:id'><i className="fas fa-shopping-cart icon"></i > Cart</Link></li>
+          <li><Link to={`/customers/${getUid()}`}><i className="fas fa-user-friends icon"></i> My Profile</Link></li>
+          {showIfAdmin()}
         </ul>
       </div>
       <div className='nav-link btn btn-danger' onClick={(e) => logMeOut(e)}>Logout</div>
@@ -50,5 +49,5 @@ export default function VerticalNavbar({ uid }) {
 
 VerticalNavbar.propTypes = {
   user: PropTypes.any,
-  uid: PropTypes.any
+  userDetails: PropTypes.any,
 };

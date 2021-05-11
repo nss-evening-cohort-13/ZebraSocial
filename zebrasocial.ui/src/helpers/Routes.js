@@ -19,7 +19,7 @@ import { getEventById } from './data/eventData';
 import getUid from './data/authData';
 // stupid routes
 
-export default function Routes({ user }) {
+export default function Routes({ user, userDetails }) {
   const [customer, setCustomers] = useState([]);
   const [event, setEvents] = useState([]);
 
@@ -56,7 +56,7 @@ export default function Routes({ user }) {
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
       <Route exact path='/orders' component={Orders} />
-      <Route exact path='/Products' component={ProductCategories} />
+      <PrivateRoute exact path='/Products' component={ProductCategories} user={user} userDetails={userDetails} />
       <Route exact path='/orders/:id' component={OrderDetails} />
       <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={(props) => <EventDetails user={user} event={event} {...props} />} />
@@ -67,6 +67,22 @@ export default function Routes({ user }) {
   );
 }
 
+const PrivateRoute = ({
+  component: Component, user, userDetails, ...rest
+}) => {
+  const routeChecker = (route) => ((user && userDetails.isAdmin === true)
+    ? (<Component {...route} user={user} />)
+    : (<h1>401</h1>));
+  return <Route {...rest} render={(props) => routeChecker(props) } />;
+};
+
 Routes.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  userDetails: PropTypes.any
+};
+
+PrivateRoute.propTypes = {
+  userDetails: PropTypes.any,
+  user: PropTypes.any,
+  component: PropTypes.any,
 };
