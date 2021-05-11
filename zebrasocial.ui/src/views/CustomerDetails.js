@@ -27,12 +27,14 @@ const CustomerDetails = (props) => {
   useEffect(() => {
     const customerId = getUid();
     getCustomer(customerId);
+  }, [customer]);
+  useEffect(() => {
     const customerPayment = customer.paymentId;
     getPayment(customerPayment);
-  }, []);
+  }, [payment]);
 
   const showCustomers = () => (
-     <CustomerDetailsCard key={customer.id} customer={customer} payment={payment} />
+     <CustomerDetailsCard key={customer.id} customer={customer} customerPayment={customer.paymentId} payment={payment} />
   );
   return (
     <>{ props.user ? (
