@@ -39,7 +39,6 @@ class App extends React.Component {
 
   render() {
     const { user, userDetails } = this.state;
-    console.log(userDetails);
     return (
     <div className='App'>
       <Router>

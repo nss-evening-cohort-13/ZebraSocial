@@ -72,7 +72,10 @@ const PrivateRoute = ({
 }) => {
   const routeChecker = (route) => ((user && userDetails.isAdmin === true)
     ? (<Component {...route} user={user} />)
-    : (<h1>401</h1>));
+    : (<div className='p-5'>
+        <h1>401</h1>
+          <h5>Admin Required</h5>
+       </div>));
   return <Route {...rest} render={(props) => routeChecker(props) } />;
 };
 
