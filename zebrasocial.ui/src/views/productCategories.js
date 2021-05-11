@@ -19,9 +19,9 @@ export default class ProductCategories extends Component {
       );
       return (
         <>
+            <div className='animal'>
+        <h3>Animals</h3>
           <div className='products-container'>
-            <div>
-        <h3>Animals(3)</h3>
         {productList()}
             </div>
          </div>
