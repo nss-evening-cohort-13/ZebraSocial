@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { baseUrl } from '../../helpers/config.json';
 import updateAnimalInfo from '../../helpers/data/productData';
 
+const animalUrl = `${baseUrl}/animals`;
 export default function EditAnimalForm({ animal }) {
   const {
     register,
@@ -24,8 +27,20 @@ export default function EditAnimalForm({ animal }) {
       description: data.description,
       price: parsedPrice
     };
-    updateAnimalInfo.updateAnimalInfo(animalId, dataObject)
-      .catch((err) => console.warn('nope', err));
+    if (!animalId) {
+      const newAnimal = {
+        name: data.name,
+        type: data.type,
+        eventSpecialty: data.eventSpecialty,
+        imageUrl: data.imageUrl,
+        description: data.description,
+        price: parsedPrice
+      };
+      axios.post(animalUrl, newAnimal);
+    } else {
+      updateAnimalInfo.updateAnimalInfo(animalId, dataObject)
+        .catch((err) => console.warn('nope', err));
+    }
   };
 
   return (

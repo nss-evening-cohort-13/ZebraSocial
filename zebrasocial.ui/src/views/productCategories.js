@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import productData from '../helpers/data/productData';
 import ProductsCard from '../components/Cards/productsCard';
+import MyModal from '../components/AppModal';
+import EditAnimalForm from '../components/Forms/EditAnimalForm';
 
 export default class ProductCategories extends Component {
     state = {
@@ -19,8 +21,14 @@ export default class ProductCategories extends Component {
       );
       return (
         <>
-            <div className='animal'>
         <h3>Animals</h3>
+        <MyModal title={'Add Animal'} color={'success'} buttonLabel={'Add Animal'}>
+                 <EditAnimalForm
+                    key={animals.id}
+                    animal={animals}
+                  />
+        </MyModal>
+            <div className='animal'>
           <div className='a-container'>
         {productList()}
             </div>
