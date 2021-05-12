@@ -19,7 +19,7 @@ export default function EditPaymentForm({ payment, customer }) {
     // const customerPayId = customer.paymentId;
     const customerId = customer.firebaseId;
     const paymentId = payment.id;
-    const parsedId = Number(data.id);
+    const parsedId = Number(payment.id);
     const parsedMonth = Number(data.expMonth);
     const parsedYear = Number(data.expYear);
     const parsedCVV = Number(data.cvv);
@@ -59,7 +59,6 @@ export default function EditPaymentForm({ payment, customer }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" defaultValue={payment.id || null} {...register('id')} readOnly/>
       <h5>First Name</h5>
       <input defaultValue={payment.firstName || null} {...register('firstName', { required: true })} />
       <h5>Last Name</h5>

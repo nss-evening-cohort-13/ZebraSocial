@@ -21,7 +21,7 @@ export default class ProductCategories extends Component {
         <>
             <div className='animal'>
         <h3>Animals</h3>
-          <div className='products-container'>
+          <div className='a-container'>
         {productList()}
             </div>
          </div>
