@@ -8,7 +8,9 @@ import {
 } from 'reactstrap';
 
 const MyModal = (props) => {
-  const { buttonLabel, className, title } = props;
+  const {
+    buttonLabel, className, title, color
+  } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -17,7 +19,7 @@ const MyModal = (props) => {
   return (
     <div>
         <div className="p-3">
-      <Button color='warning' onClick={toggle}>
+      <Button color={color} onClick={toggle}>
         {buttonLabel}
       </Button>
       </div>
@@ -37,5 +39,6 @@ MyModal.propTypes = {
   children: PropTypes.any,
   buttonLabel: PropTypes.any,
   className: PropTypes.any,
-  title: PropTypes.any
+  title: PropTypes.any,
+  color: PropTypes.any
 };

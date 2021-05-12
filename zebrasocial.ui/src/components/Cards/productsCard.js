@@ -13,7 +13,7 @@ export default function ProductsCard({ animal }) {
         <p className='card-text'>
           {animal.description}
         </p>
-        <MyModal title={`Edit ${animal.name}`} buttonLabel={'Edit Animal'}>
+        <MyModal title={`Edit ${animal.name}`} color={'info'} buttonLabel={'Edit Animal'}>
                  <EditAnimalForm
                     key={animal.id}
                     animal={animal}

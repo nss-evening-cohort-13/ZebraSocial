@@ -95,7 +95,7 @@ export default function CustomerDetailsCard({ customer, customerPayment }) {
                           </h6>
                         </div>
                       </div>
-                      <MyModal title={'Edit Info'} buttonLabel={'Edit Info'}>
+                      <MyModal title={'Edit Info'} color={'warning'} buttonLabel={'Edit Info'}>
                         <EditCustomerForm
                           customer={cust}
                           key={cust.id}
@@ -128,7 +128,7 @@ export default function CustomerDetailsCard({ customer, customerPayment }) {
                           </h6>
                         </div>
                       </div>
-                      <MyModal title={'Edit Payment'} buttonLabel={'Edit Payment'}>
+                      <MyModal title={'Edit Payment'} color={'success'} buttonLabel={'Edit Payment'}>
                         <EditPaymentForm
                           customer={cust}
                           key={pay.id}

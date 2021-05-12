@@ -13,13 +13,13 @@ export default function AnimalsCard({ animal }) {
         <p className='card-text'>
           {animal.description}
         </p>
-        <MyModal title={`You Picked ${animal.name}!`} buttonLabel={'Add Event'}>
+        <MyModal title={`You Picked ${animal.name}!`} color={'warning'} buttonLabel={'Add Event'}>
                         <EditEventForm
                           key={animal.id}
                           animal={animal}
                         />
                       </MyModal>
-      <MyModal title={'About This Rental'} buttonLabel={'Click Here For Details'}>
+      <MyModal title={'About This Rental'} color={'info'} buttonLabel={'Click Here For Details'}>
       <div className='card-body embed-responsive embed-responsive-16by9'>
         <img src={animal.imageUrl} className='image embed-responsive-item'/>
       </div>
