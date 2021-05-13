@@ -25,7 +25,9 @@ Far from the truth, the first unbegged flax is, in its own way, a port. Few can 
 
 {/* <img src="https://www.creativefabrica.com/wp-content/uploads/2019/07/Zebra-Mandala-line-art-style.jpg" alt="Girl in a jacket" width="100" height="100"></img> */}
       </p>
+      <footer className='login-button'>
       {loadComponent()}
+      </footer>
     </div>
   );
 }
