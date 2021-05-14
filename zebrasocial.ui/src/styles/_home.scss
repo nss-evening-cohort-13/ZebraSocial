@@ -1,0 +1,22 @@
+.content-box {
+    columns: 3 auto;
+    position: fixed; left: 19%;
+    flex-direction: wrap;
+    margin: 50;
+    justify-content: space-between;
+    border: 4px solid black;
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    padding-top: 50px;
+  }
+
+.login-button {
+    position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+}
+  
