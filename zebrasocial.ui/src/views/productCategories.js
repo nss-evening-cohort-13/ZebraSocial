@@ -29,7 +29,7 @@ export default class ProductCategories extends Component {
                   />
         </MyModal>
             <div className='animal'>
-          <div className='a-container'>
+          <div className='a-container d-flex flex-wrap'>
         {productList()}
             </div>
          </div>

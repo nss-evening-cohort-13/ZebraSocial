@@ -21,7 +21,7 @@ export default class AnimalsCategories extends Component {
         <>
           <div className='animal'>
         <h3>Pick Your Animal</h3>
-            <div className='a-container '>
+            <div className='a-container d-flex flex-wrap'>
         {animalList()}
             </div>
          </div>
