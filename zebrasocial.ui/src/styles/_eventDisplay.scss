@@ -139,4 +139,13 @@ hr {
     .para {
         font-size: 16px
     }
+
+    hr {
+        height: 1px;
+        background-color: rgba(5, 5, 5, 0.884);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 30px;
+        margin-right: 30px;
+      }
 }

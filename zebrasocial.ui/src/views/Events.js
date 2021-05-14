@@ -21,8 +21,9 @@ export default class Events extends Component {
 
   render() {
     const { events } = this.state;
+    const sorted = events.sort((a, b) => new Date(a.date) - new Date(b.date));
     const showEvents = () => (
-      events.map((eve) => <EventsCard key={eve.id} eve={eve} />)
+      sorted.map((eve) => <EventsCard key={eve.id} eve={eve} />)
     );
     return (
       <div className="adminEvents">

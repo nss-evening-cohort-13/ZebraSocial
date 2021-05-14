@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { getZebraById } from '../../helpers/data/zebraData';
+import { getCustomerById } from '../../helpers/data/customerData';
 
 export default function EventsCard({ eve }) {
   const [animal, setAnimal] = useState([]);
+  const [customer, setCustomers] = useState([]);
 
   const getZebra = (zebraId) => {
     if (zebraId !== 0) {
@@ -12,11 +16,22 @@ export default function EventsCard({ eve }) {
       });
     }
   };
+  const getCustomer = (customerId) => {
+    getCustomerById(customerId).then((response) => {
+      const singleCustomer = response;
+      setCustomers(singleCustomer);
+    })
+      .catch((err) => console.warn('nope', err));
+  };
 
   useEffect(() => {
     const zebra = eve.animalId;
     getZebra(zebra);
   }, [animal]);
+  useEffect(() => {
+    const cust = eve.customerId;
+    getCustomer(cust);
+  }, [customer]);
 
   const price = () => {
     const total = animal.price + eve.price;
@@ -53,16 +68,18 @@ export default function EventsCard({ eve }) {
             <div className="mt-1 mb-3 spec-1"><span>{lengthConvert()}</span><span className="dot"></span><span>{date.toDateString()}</span></div>
             <p className="text-justify  para mb-3"><b>Location:</b> {eve.location}</p>
             <div className="d-flex flex-row">
-                <span><b>Animal:</b> {animal.name}</span>
+                <span><b>Animal:</b> {animal.type}</span>
             </div>
-            <div className="mt-1 mb-1 spec-1 mb-2"><span>{animal.type}</span><span className="dot"></span><span>{animal.eventSpecialty}</span></div>
+            <div className="mt-1 mb-1 spec-1 mb-2"><span>Name: {animal.name}</span><span className="dot"></span><span>Specialty: {animal.eventSpecialty}</span></div>
         </div>
         <div className="align-items-center align-content-center col-md-3 border-left mt-1">
             <div className="d-flex flex-row align-items-center">
                 <h5 className="mr-1 text-success">Total:</h5>
             </div>
-            <h6 className=""> {price()}</h6>
-            <div className="d-flex flex-column mt-4"><button className="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button></div>
+            <h6 className="mb-4"> {price()}</h6>
+            <hr />
+            <h5>Customer:</h5>
+            <Link to={'/customers'} className="d-flex flex-column mt-2 text-muted f-w-400"><Button outline color="primary" className=" mt-2" >{customer.firstName} {customer.lastName}</Button></Link>
         </div>
     </div>
     {/* end first card */}
