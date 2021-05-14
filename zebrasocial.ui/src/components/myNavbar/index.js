@@ -16,7 +16,7 @@ export default function VerticalNavbar({ userDetails }) {
 
   const showIfAdmin = () => {
     if (userDetails.isAdmin === true) {
-      return (<li><Link to='/Products'><i className="fas fa-box-open"></i> Our Products</Link></li>);
+      return (<li><Link to='/admin'><i className="fas fa-user-cog"></i> Admin</Link></li>);
     }
     return '';
   };

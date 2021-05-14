@@ -19,6 +19,12 @@ const getZebraById = (customerId) => new Promise((resolve, reject) => {
 
 const deleteEvent = (id) => axios.delete(`${eventUrl}/${id}`);
 
+const getAllEvents = () => new Promise((resolve, reject) => {
+  axios.get(eventUrl).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 export {
-  addEvent, getEventById, getZebraById, deleteEvent
+  addEvent, getEventById, getZebraById, deleteEvent, getAllEvents
 };
