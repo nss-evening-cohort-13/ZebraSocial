@@ -13,7 +13,6 @@ import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
 import SearchResults from '../views/searchResults';
-
 import { getCustomerById } from './data/customerData';
 import { getEventById } from './data/eventData';
 import getUid from './data/authData';
