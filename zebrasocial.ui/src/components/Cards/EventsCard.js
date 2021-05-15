@@ -16,6 +16,7 @@ export default function EventsCard({ eve }) {
       });
     }
   };
+
   const getCustomer = (customerId) => {
     getCustomerById(customerId).then((response) => {
       const singleCustomer = response;
