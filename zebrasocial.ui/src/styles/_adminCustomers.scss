@@ -61,14 +61,15 @@
 .counter-container {
     .container {
         margin-top: 125px;
-        position: fixed; left: 13%;
+        margin-left: 17%;
     }
     
     .counter-box {
         display: block;
         background: #f6f6f6;
         padding: 40px 20px 37px;
-        text-align: center
+        width: 250px;
+        text-align: center;
     }
     
     .counter-box p {
@@ -93,13 +94,33 @@
         line-height: 28px
     }
     
-    .counter-box.colored {
-        background: #3acf87
+    .counter-box.anim {
+        background: #3ab9cf
     }
     
-    .counter-box.colored p,
-    .counter-box.colored i,
-    .counter-box.colored .counter {
+    .counter-box.anim p,
+    .counter-box.anim i,
+    .counter-box.anim .counter {
+        color: #fff
+    }
+
+    .counter-box.event {
+        background: rgb(29, 170, 29)
+    }
+    
+    .counter-box.event p,
+    .counter-box.event i,
+    .counter-box.event .counter {
+        color: #fff
+    }
+
+    .counter-box.customer {
+        background: rgb(241, 72, 72)
+    }
+    
+    .counter-box.customer p,
+    .counter-box.customer i,
+    .counter-box.customer .counter {
         color: #fff
     }
 }
