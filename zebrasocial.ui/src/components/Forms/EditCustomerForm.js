@@ -13,7 +13,7 @@ export default function EditCustomerForm({ customer }) {
 
   const onSubmit = (data) => {
     const custId = customer.id;
-    const parsedId = Number(data.id);
+    const parsedId = Number(customer.id);
     const parsedPayment = Number(data.paymentId);
     const dataObject = {
       id: parsedId,
@@ -29,7 +29,6 @@ export default function EditCustomerForm({ customer }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" defaultValue={customer.id} {...register('id')} readOnly/>
       <h5>First Name</h5>
       <input defaultValue={customer.firstName} {...register('firstName', { required: true })} />
       <h5>Last Name</h5>

@@ -12,6 +12,7 @@ import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
+import AdminView from '../views/AdminView';
 import SearchResults from '../views/searchResults';
 
 import { getCustomerById } from './data/customerData';
@@ -57,10 +58,11 @@ export default function Routes({ user, userDetails }) {
       <Route exact path='/paymentinfo' component={PaymentInfo} />
       <Route exact path='/orders' component={Orders} />
       <PrivateRoute exact path='/Products' component={ProductCategories} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/admin' component={AdminView} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/events' component={Events} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/customers' component={Customers} user={user} userDetails={userDetails} />
       <Route exact path='/orders/:id' component={OrderDetails} />
-      <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={(props) => <EventDetails user={user} event={event} {...props} />} />
-      <Route exact path='/customers' component={Customers} />
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
     </Switch>

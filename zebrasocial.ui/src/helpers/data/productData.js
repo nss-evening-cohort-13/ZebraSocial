@@ -16,4 +16,8 @@ const getSearchedProducts = (searchTerm) => new Promise((resolve, reject) => axi
     resolve(searched);
   }).catch((error) => reject(error)));
 
-export default { getAllAnimalProducts, getAllEventProducts, getSearchedProducts };
+const updateAnimalInfo = (animalId, updatedAnimal) => axios.put(`${AnimalsUrl}/${animalId}/update`, updatedAnimal);
+
+export default {
+  getAllAnimalProducts, getAllEventProducts, getSearchedProducts, updateAnimalInfo
+};

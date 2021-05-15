@@ -20,19 +20,19 @@
   
   .a-container {
     display: flex;
-    justify-content: row wrap space-between;
+    justify-content: row wrap ;
     margin: 50px;
   }
   
   .animal {
-    position: fixed; left: 19%;
+    position: fixed; left: 13%;
     flex-direction: wrap;
     margin: 50;
-    justify-content: space-between;
+    justify-content: space-between ;
  }
 
   .animal-container {
-     position: fixed; left: 30%;
+     position: fixed; left: 20%;
      flex-direction: wrap;
      margin: 50;
      justify-content: space-between;
