@@ -49,9 +49,9 @@ export default class AdminView extends Component {
     const { animals, events, customers } = this.state;
     return (
         <div>
+          <h2 className="admin-head">Admin Dashboard</h2>
             <div className="counter-container">
           <div className="container">
-          <h2>Admin Dashboard</h2>
     <div className="row">
         <div className="four p-4">
             <div className="counter-box anim"> <i className="fas fa-horse"></i> <span className="counter">{Object.keys(animals).length}</span>
