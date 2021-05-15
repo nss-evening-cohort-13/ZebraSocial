@@ -57,3 +57,77 @@
 .adminDash {
     padding-top: 5%;
 }
+
+.counter-container {
+    .container {
+        margin-left: 17%;
+    }
+    .row {
+        margin-top: 75px;
+    }
+    
+    .counter-box {
+        display: block;
+        background: #f6f6f6;
+        padding: 40px 20px 37px;
+        width: 250px;
+        text-align: center;
+        border-radius: 1em;
+    }
+    
+    .counter-box p {
+        margin: 5px 0 0;
+        padding: 0;
+        color: #909090;
+        font-size: 18px;
+        font-weight: 500
+    }
+    
+    .counter-box i {
+        font-size: 60px;
+        margin: 0 0 15px;
+        color: #d2d2d2;
+    }
+    
+    .counter {
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+        color: #666;
+        line-height: 28px
+    }
+    
+    .counter-box.anim {
+        background: #3ab9cfee
+    }
+    
+    .counter-box.anim p,
+    .counter-box.anim i,
+    .counter-box.anim .counter {
+        color: #fff
+    }
+
+    .counter-box.event {
+        background: rgba(29, 170, 29, 0.938)
+    }
+    
+    .counter-box.event p,
+    .counter-box.event i,
+    .counter-box.event .counter {
+        color: #fff
+    }
+
+    .counter-box.customer {
+        background: rgba(241, 72, 72, 0.938)
+    }
+    
+    .counter-box.customer p,
+    .counter-box.customer i,
+    .counter-box.customer .counter {
+        color: #fff
+    }
+}
+
+.admin-head {
+    margin-left: 17%;
+}
