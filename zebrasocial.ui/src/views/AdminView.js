@@ -20,13 +20,14 @@ export default class AdminView extends Component {
 
   getEvents = () => {
     getAllEvents().then((response) => {
+      const array = [];
       response.forEach((event) => {
         if (event.customerId !== null) {
-          console.log(event);
-          this.setState({
-            events: event
-          });
+          array.push(event);
         }
+      });
+      this.setState({
+        events: array
       });
     });
   }
@@ -48,9 +49,9 @@ export default class AdminView extends Component {
     const { animals, events, customers } = this.state;
     return (
         <div>
-          <h2>Admin Dashboard</h2>
             <div className="counter-container">
           <div className="container">
+          <h2>Admin Dashboard</h2>
     <div className="row">
         <div className="four p-4">
             <div className="counter-box anim"> <i className="fas fa-horse"></i> <span className="counter">{Object.keys(animals).length}</span>
