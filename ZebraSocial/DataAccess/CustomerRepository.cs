@@ -28,9 +28,9 @@ namespace ZebraSocial.DataAccess
 
         public void Add(Customer customer)
         {
-            var sql = @"INSERT INTO [dbo].[Customers] ([firstName],[lastName],[email],[imageUrl],[firebaseId])
+            var sql = @"INSERT INTO [dbo].[Customers] ([firstName],[lastName],[email],[imageUrl],[firebaseId], [isAdmin])
                         OUTPUT inserted.Id
-                        VALUES(@firstName ,@lastName ,@email ,@imageUrl ,@firebaseId)";
+                        VALUES(@firstName ,@lastName ,@email ,@imageUrl ,@firebaseId ,@isAdmin)";
            
            var db = new SqlConnection(ConnectionString);
            var id = db.ExecuteScalar<int>(sql, customer);
@@ -75,25 +75,14 @@ namespace ZebraSocial.DataAccess
                         Email = Null,
                         ImageUrl = Null,
                         PaymentId = Null,
-                        FirebaseId = Null
+                        FirebaseId = Null,
+                        IsAdmin = 0
                         WHERE firebaseId = @id";
             var OneCustomer = GetCustomerById(id);
 
             db.Execute(sql, OneCustomer);
         }
 
-        /*public void updatePaymentId(Customer OneCustomer)
-        {
-            using var db = new SqlConnection(ConnectionString);
-            var sql = @"UPDATE [dbo].[Customers]
-                        FirstName = @FirstName,
-                        LastName = @LastName,
-                        Email = @Email,
-                        ImageUrl = @ImageUrl,
-                        PaymentId = @PaymentId,
-                        WHERE FirebaseId = @id";
-            db.Execute(sql, OneCustomer);
-        }*/
 
     }
 

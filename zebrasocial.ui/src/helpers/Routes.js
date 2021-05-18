@@ -12,13 +12,14 @@ import PaymentInfo from '../views/PaymentInfo';
 import ZebraDetails from '../views/ZebraDetails';
 import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
+import AdminView from '../views/AdminView';
 import SearchResults from '../views/searchResults';
 import { getCustomerById } from './data/customerData';
 import { getEventById } from './data/eventData';
 import getUid from './data/authData';
 // stupid routes
 
-export default function Routes({ user }) {
+export default function Routes({ user, userDetails }) {
   const [customer, setCustomers] = useState([]);
   const [event, setEvents] = useState([]);
 
@@ -43,26 +44,49 @@ export default function Routes({ user }) {
   useEffect(() => {
     // const customerId = getUid();
     getCustomer();
+  }, [customer]);
+
+  useEffect(() => {
     getEvent();
-  }, []);
+  }, [event]);
   return (
     <Switch>
       <Route exact path='/' component={() => <Home user={user} />} />
       <Route exact path='/zebras' component={() => <Zebras user={user} customer={customer} />} />
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
-      <Route exact path='/orders' component={() => <Orders customer={customer}/>} />
-      <Route exact path='/Products' component={ProductCategories} />
+      <Route exact path='/orders' component={Orders} />
+      <PrivateRoute exact path='/Products' component={ProductCategories} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/admin' component={AdminView} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/events' component={Events} user={user} userDetails={userDetails} />
+      <PrivateRoute exact path='/customers' component={Customers} user={user} userDetails={userDetails} />
       <Route exact path='/orders/:id' component={OrderDetails} />
-      <Route exact path='/events' component={Events} />
       <Route exact path='/events/:id' component={(props) => <EventDetails user={user} event={event} {...props} />} />
-      <Route exact path='/customers' component={Customers} />
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
     </Switch>
   );
 }
 
+const PrivateRoute = ({
+  component: Component, user, userDetails, ...rest
+}) => {
+  const routeChecker = (route) => ((user && userDetails.isAdmin === true)
+    ? (<Component {...route} user={user} />)
+    : (<div className='error p-5'>
+        <h1>401</h1>
+          <h5>Admin Required</h5>
+       </div>));
+  return <Route {...rest} render={(props) => routeChecker(props) } />;
+};
+
 Routes.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  userDetails: PropTypes.any
+};
+
+PrivateRoute.propTypes = {
+  userDetails: PropTypes.any,
+  user: PropTypes.any,
+  component: PropTypes.any,
 };
