@@ -9,4 +9,5 @@ const getOrderById = (customerId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getOrderById };
+// eslint-disable-next-line import/prefer-default-export
+export { getOrderById };

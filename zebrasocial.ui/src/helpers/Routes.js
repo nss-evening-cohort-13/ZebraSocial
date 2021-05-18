@@ -51,7 +51,7 @@ export default function Routes({ user }) {
       <Route exact path='/zebras' component={() => <Zebras user={user} customer={customer} />} />
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
-      <Route exact path='/orders' component={Orders} />
+      <Route exact path='/orders' component={() => <Orders customer={customer}/>} />
       <Route exact path='/Products' component={ProductCategories} />
       <Route exact path='/orders/:id' component={OrderDetails} />
       <Route exact path='/events' component={Events} />
