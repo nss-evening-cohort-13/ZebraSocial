@@ -19,6 +19,7 @@ export default class Orders extends Component {
   getCustomer = (customerId) => {
     getCustomerById(customerId).then((response) => {
       const custId = response.id;
+      console.warn(response.id);
       getOrderById(custId).then((resp) => {
         console.warn(resp);
       });
