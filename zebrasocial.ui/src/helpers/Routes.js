@@ -44,11 +44,19 @@ export default function Routes({ user, userDetails }) {
 
   useEffect(() => {
     // const customerId = getUid();
-    getCustomer();
+    document.addEventListener('customer', getCustomer);
+
+    return () => {
+      document.removeEventListener('customer', getCustomer);
+    };
   }, [customer]);
 
   useEffect(() => {
-    getEvent();
+    document.addEventListener('customer', getEvent);
+
+    return () => {
+      document.removeEventListener('customer', getEvent);
+    };
   }, [event]);
   return (
     <Switch>
