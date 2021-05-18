@@ -36,7 +36,7 @@ export default function VerticalNavbar({ userDetails }) {
           <SearchBar />
           <li><Link to='/'><i className="fas fa-home icon"></i> Home</Link></li>
           <li><Link to='/zebras'><i className="fas fa-horse icon"></i> Rent An Animal</Link></li>
-          <li><Link to='/orders/:id'><i className="fas fa-shopping-cart icon"></i > Cart</Link></li>
+          <li><Link to={`/orders/${getUid()}`}><i className="fas fa-shopping-cart icon"></i > Cart</Link></li>
           <li><Link to={`/customers/${getUid()}`}><i className="fas fa-user-friends icon"></i> My Profile</Link></li>
           {showIfAdmin()}
         </ul>

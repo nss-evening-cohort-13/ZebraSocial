@@ -14,6 +14,7 @@ import Zebras from '../views/Zebras';
 import ProductCategories from '../views/productCategories';
 import AdminView from '../views/AdminView';
 import SearchResults from '../views/searchResults';
+import Success from '../views/Success';
 import { getCustomerById } from './data/customerData';
 import { getEventById } from './data/eventData';
 import getUid from './data/authData';
@@ -55,15 +56,16 @@ export default function Routes({ user, userDetails }) {
       <Route exact path='/zebras' component={() => <Zebras user={user} customer={customer} />} />
       <Route exact path='/zebras/:id' component={ZebraDetails} />
       <Route exact path='/paymentinfo' component={PaymentInfo} />
-      <Route exact path='/orders' component={Orders} />
+      <Route exact path='/orders/:id' component={Orders} />
       <PrivateRoute exact path='/Products' component={ProductCategories} user={user} userDetails={userDetails} />
       <PrivateRoute exact path='/admin' component={AdminView} user={user} userDetails={userDetails} />
       <PrivateRoute exact path='/events' component={Events} user={user} userDetails={userDetails} />
       <PrivateRoute exact path='/customers' component={Customers} user={user} userDetails={userDetails} />
-      <Route exact path='/orders/:id' component={OrderDetails} />
+      <Route exact path='/orderDetails/' component={OrderDetails} />
       <Route exact path='/events/:id' component={(props) => <EventDetails user={user} event={event} {...props} />} />
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
+      <Route exact path='/success' component={Success} />
     </Switch>
   );
 }
