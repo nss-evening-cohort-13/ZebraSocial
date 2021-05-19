@@ -41,6 +41,7 @@ export default class EventDetails extends Component {
 
   render() {
     const { zebra, event } = this.state;
+    console.log(zebra);
     const date = new Date(event.date);
     const price = () => {
       const total = zebra.price + event.price;

@@ -7,6 +7,7 @@ import MyModal from '../components/AppModal';
 import EditOrderForm from '../components/Forms/EditOrderForm';
 import { getOrderById } from '../helpers/data/orderData';
 import { getPaymentInfoById } from '../helpers/data/paymentData';
+import Fail from './Fail';
 
 export default class Orders extends Component {
   state = {
@@ -74,15 +75,15 @@ export default class Orders extends Component {
       customer, event, zebra, orders, payment
     } = this.state;
     const date = new Date(event.date);
-    console.log(payment);
     return (
-      <>
+      <>{ payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.firstName && payment.lastName ? (
+        <>
       <div className="card checkout">
-    <div className="title">Purchase Reciept</div>
+    <div className="title">Order Details</div>
     <div className="info">
         <div className="row">
             <div className="col-7"> <span id="heading">Date</span><br/> <span id="details">{date.toDateString()}</span> </div>
-            <div className="col-5 pull-right"> <span id="heading">Order No.</span><br/> <span id="details">{orders.id}</span> </div>
+            <div className="col-5 pull-right"> <span id="heading">Order No.</span><br/> <span id="details">{orders.id + 1}</span> </div>
         </div>
     </div>
     <div className="pricing">
@@ -102,7 +103,7 @@ export default class Orders extends Component {
         </div>
     </div>
     <div className='Orders'>
-          <MyModal color={'info'} buttonLabel={'Submit'}>
+          <MyModal color={'info'} buttonLabel={'Check Out'}>
                         <EditOrderForm
                           customer={customer}
                           key={customer.id}
@@ -112,6 +113,10 @@ export default class Orders extends Component {
                       </MyModal>
           </div>
 </div>
+      </>
+      ) : (
+        <Fail />
+      )}
       </>
     );
   }
