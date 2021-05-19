@@ -68,5 +68,12 @@ namespace ZebraSocial.Controllers
 
             return Ok();
         }
+        
+        
+        [HttpGet("{customerId}/Orders")]
+        public IActionResult GetEventsById(string customerId)
+        {
+            return Ok(_repo.GetCustomerOrder(customerId));
+        }
     }
 }
