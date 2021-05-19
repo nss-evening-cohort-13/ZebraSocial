@@ -66,5 +66,19 @@ namespace ZebraSocial.DataAccess
             using var db = new SqlConnection(ConnectionString);
             db.Execute(sql, new { id });
         }
+        public Order GetCustomerOrder(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            // comments
+            var sql = @"Select o.*
+                        FROM Orders o
+                        join Events e on o.EventId = e.id
+                        join Customers c on o.CustomerId = c.id
+                        where c.FirebaseId = @id";
+
+            var Order = db.QueryFirstOrDefault<Order>(sql, new { id = id });
+
+            return Order;
+        }
     }
 }
