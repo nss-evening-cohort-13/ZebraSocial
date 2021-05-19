@@ -56,8 +56,9 @@ namespace ZebraSocial.DataAccess
         public Event Get(string id)
         {
             var sql = @"SELECT *
-                        FROM Events
-                        WHERE CustomerId = @id";
+                        FROM Events e
+                        WHERE CustomerId = @id
+                        ORDER BY e.Id DESC";
             using var db = new SqlConnection(ConnectionString);
             var yourEvent = db.QueryFirstOrDefault<Event>(sql, new { id });
             return yourEvent;

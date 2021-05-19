@@ -15,6 +15,7 @@ import ProductCategories from '../views/productCategories';
 import AdminView from '../views/AdminView';
 import SearchResults from '../views/searchResults';
 import Success from '../views/Success';
+import Fail from '../views/Fail';
 import { getCustomerById } from './data/customerData';
 import { getEventById } from './data/eventData';
 import getUid from './data/authData';
@@ -69,6 +70,7 @@ export default function Routes({ user, userDetails }) {
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
       <Route exact path='/success' component={Success} />
+      <Route exact path='/fail' component={Fail} />
     </Switch>
   );
 }
