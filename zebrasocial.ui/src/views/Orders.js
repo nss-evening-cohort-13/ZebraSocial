@@ -5,6 +5,7 @@ import { getEventById, getZebraById } from '../helpers/data/eventData';
 import getUid from '../helpers/data/authData';
 import MyModal from '../components/AppModal';
 import EditOrderForm from '../components/Forms/EditOrderForm';
+import { getOrderById } from '../helpers/data/orderData';
 
 export default class Orders extends Component {
   state = {
@@ -19,6 +20,16 @@ export default class Orders extends Component {
     this.getCustomer(customerId);
     this.getEvent(customerId);
     this.getZebra(customerId);
+    this.getOrders(customerId);
+  }
+
+  getOrders = (customerId) => {
+    console.warn('customerId', customerId);
+    if (customerId) {
+      getOrderById(customerId).then((resp) => {
+        this.setState({ orders: resp });
+      });
+    }
   }
 
   getCustomer = (customerId) => {
@@ -48,14 +59,40 @@ export default class Orders extends Component {
   }
 
   render() {
-    const { customer, event, zebra } = this.state;
+    const {
+      customer, event, zebra, orders
+    } = this.state;
+    const date = new Date(event.date);
     // const orderCardForCustomer = (
     //   orders.map((order) => <OrderCard key={order} order={this.state.order} customerId={customerId} />)
     // );
     return (
-      <div>
-        <h2>
-          <div className='Orders'>
+      <>
+      <div className="card checkout">
+    <div className="title">Purchase Reciept</div>
+    <div className="info">
+        <div className="row">
+            <div className="col-7"> <span id="heading">Date</span><br/> <span id="details">{date.toDateString()}</span> </div>
+            <div className="col-5 pull-right"> <span id="heading">Order No.</span><br/> <span id="details">{orders.id}</span> </div>
+        </div>
+    </div>
+    <div className="pricing">
+        <div className="row">
+            <div className="col-9"> <span id="name">{event.name}</span> </div>
+            <div className="col-3"> <span id="price">{event.price}</span> </div>
+        </div>
+        <div className="row">
+            <div className="col-9"> <span id="name">{zebra.name}</span> </div>
+            <div className="col-3"> <span id="price">{zebra.price}</span> </div>
+        </div>
+    </div>
+    <div className="total">
+        <div className="row">
+            <div className="col-9"></div>
+            <div className="col-3"><big>{orders.total}</big></div>
+        </div>
+    </div>
+    <div className='Orders'>
           <MyModal color={'info'} buttonLabel={'Submit'}>
                         <EditOrderForm
                           customer={customer}
@@ -65,8 +102,8 @@ export default class Orders extends Component {
                         />
                       </MyModal>
           </div>
-          </h2>
-      </div>
+</div>
+      </>
     );
   }
 }
