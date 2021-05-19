@@ -20,7 +20,7 @@ export default function AdminCustomers({ customer }) {
   };
 
   useEffect(() => {
-    const customerPayment = customer.paymentId;
+    const customerPayment = customer.firebaseId;
     if (customerPayment) {
       getPayment(customerPayment);
     }

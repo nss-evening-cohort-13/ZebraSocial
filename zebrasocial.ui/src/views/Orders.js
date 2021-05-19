@@ -6,6 +6,7 @@ import getUid from '../helpers/data/authData';
 import MyModal from '../components/AppModal';
 import EditOrderForm from '../components/Forms/EditOrderForm';
 import { getOrderById } from '../helpers/data/orderData';
+import { getPaymentInfoById } from '../helpers/data/paymentData';
 
 export default class Orders extends Component {
   state = {
@@ -13,6 +14,7 @@ export default class Orders extends Component {
     customer: [],
     event: [],
     zebra: [],
+    payment: [],
   };
 
   componentDidMount() {
@@ -21,6 +23,7 @@ export default class Orders extends Component {
     this.getEvent(customerId);
     this.getZebra(customerId);
     this.getOrders(customerId);
+    this.getPayment(customerId);
   }
 
   getOrders = (customerId) => {
@@ -57,14 +60,21 @@ export default class Orders extends Component {
     });
   }
 
+  getPayment = (customerId) => {
+    getPaymentInfoById(customerId).then((response) => {
+      this.setState({
+        payment: response
+      });
+    })
+      .catch((err) => console.warn('nope', err));
+  };
+
   render() {
     const {
-      customer, event, zebra, orders
+      customer, event, zebra, orders, payment
     } = this.state;
     const date = new Date(event.date);
-    // const orderCardForCustomer = (
-    //   orders.map((order) => <OrderCard key={order} order={this.state.order} customerId={customerId} />)
-    // );
+    console.log(payment);
     return (
       <>
       <div className="card checkout">
