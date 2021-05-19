@@ -21,7 +21,9 @@ export default function AdminCustomers({ customer }) {
 
   useEffect(() => {
     const customerPayment = customer.paymentId;
-    getPayment(customerPayment);
+    if (customerPayment) {
+      getPayment(customerPayment);
+    }
   }, [payment]);
 
   return (
@@ -36,7 +38,7 @@ export default function AdminCustomers({ customer }) {
                         <div className="thumb-lg member-thumb mx-auto mb-3"><img src={customer.imageUrl} className="rounded-circle img-thumbnail" alt="profile-image"/></div>
                         <div className="">
                             <h4 className="mb-3">{customer.firstName} {customer.lastName}</h4>
-                            <p className="text-muted"><span><p className="text-pink mb-3">{customer.email}</p></span></p>
+                            <h4 className="text-muted"><span><p className="text-pink mb-3">{customer.email}</p></span></h4>
                         </div>
                         <hr />
                         <a href={sendMail()}><button type="button" className="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Send Email</button></a>

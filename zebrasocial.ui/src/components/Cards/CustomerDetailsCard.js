@@ -48,7 +48,9 @@ export default function CustomerDetailsCard({ customer, customerPayment }) {
     getCustomer(customerId);
   }, [cust]);
   useEffect(() => {
-    getPayment(customerPayment);
+    if (customerPayment) {
+      getPayment(customerPayment);
+    }
   }, [pay]);
   useEffect(() => {
     const customerId = getUid();

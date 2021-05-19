@@ -30,7 +30,9 @@ const CustomerDetails = (props) => {
   }, [customer]);
   useEffect(() => {
     const customerPayment = customer.paymentId;
-    getPayment(customerPayment);
+    if (customerPayment) {
+      getPayment(customerPayment);
+    }
   }, [payment]);
 
   const showCustomers = () => (

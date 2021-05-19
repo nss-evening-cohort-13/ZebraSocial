@@ -22,7 +22,7 @@ export default class Customers extends Component {
   render() {
     const { customers } = this.state;
     const showCustomers = () => (
-      customers.map((customer) => <AdminCustomers key={customer.firebaseKey} customer={customer} />)
+      customers.map((customer) => <AdminCustomers key={customer.id} customer={customer} />)
     );
     return (
       <div>

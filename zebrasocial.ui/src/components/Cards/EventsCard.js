@@ -27,11 +27,15 @@ export default function EventsCard({ eve }) {
 
   useEffect(() => {
     const zebra = eve.animalId;
-    getZebra(zebra);
+    if (zebra) {
+      getZebra(zebra);
+    }
   }, [animal]);
   useEffect(() => {
     const cust = eve.customerId;
-    getCustomer(cust);
+    if (cust) {
+      getCustomer(cust);
+    }
   }, [customer]);
 
   const price = () => {

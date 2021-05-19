@@ -24,7 +24,6 @@ export default class Orders extends Component {
   }
 
   getOrders = (customerId) => {
-    console.warn('customerId', customerId);
     if (customerId) {
       getOrderById(customerId).then((resp) => {
         this.setState({ orders: resp });
