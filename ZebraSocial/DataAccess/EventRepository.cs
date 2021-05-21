@@ -23,9 +23,9 @@ namespace ZebraSocial.DataAccess
 
         public void Add(Event yourEvent)
         {
-            var sql = @"INSERT INTO [dbo].[Events] ([AnimalId],[Name],[Type],[Date],[Length], [Location], [Price], [CustomerId])
+            var sql = @"INSERT INTO [dbo].[Events] ([AnimalId],[Name],[Type],[Date],[Length], [Location], [Price], [CustomerId], [IsPaidFor])
                                     OUTPUT inserted.Id 
-                                    VALUES(@AnimalId ,@Name, @Type, @Date, @Length, @Location, @Price, @CustomerId)";
+                                    VALUES(@AnimalId ,@Name, @Type, @Date, @Length, @Location, @Price, @CustomerId, @IsPaidFor)";
 
             var db = new SqlConnection(ConnectionString);
             var id = db.ExecuteScalar<int>(sql, yourEvent);
@@ -45,7 +45,8 @@ namespace ZebraSocial.DataAccess
                         Length = Null,
                         Location = Null,
                         Price = Null,
-                        CustomerId = Null
+                        CustomerId = Null,
+                        IsPaidFor = 0
                         WHERE Id = @id";
             var yourEvent = GetId(id);
             
@@ -75,7 +76,8 @@ namespace ZebraSocial.DataAccess
                         Length = @length,
                         Location = @location,
                         Price = @price,
-                        CustomerId = @customerId
+                        CustomerId = @customerId,
+                        IsPaidFor = @isPaidFor
                         WHERE Id = @id";
 
             using var db = new SqlConnection(ConnectionString);

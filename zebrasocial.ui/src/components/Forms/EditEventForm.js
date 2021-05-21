@@ -22,7 +22,8 @@ export default function App({ animal }) {
       date: data.date,
       length: parsedLength,
       location: data.location,
-      customerId: currentUser
+      customerId: currentUser,
+      isPaidFor: false
     };
     addEvent(dataObject)
       .catch((err) => console.warn('nope', err));

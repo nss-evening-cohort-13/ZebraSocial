@@ -92,6 +92,10 @@ namespace ZebraSocial.Controllers
             {
                 return NotFound("The event you are trying to update could not be found. Sorry...");
             };
+            if (yourEvent.IsPaidFor)
+            {
+                yourEvent.IsPaidFor = true;
+            }
             _repo.Update(yourEvent);
 
             return Ok(yourEvent);
