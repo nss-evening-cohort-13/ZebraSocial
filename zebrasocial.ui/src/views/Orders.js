@@ -75,31 +75,39 @@ export default class Orders extends Component {
       customer, event, zebra, orders, payment
     } = this.state;
     const date = new Date(event.date);
+    const price = (amount) => {
+      const total = amount;
+      const final = total + 0.00;
+      return `$${final.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
+    };
     return (
-      <>{ payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.firstName && payment.lastName ? (
-        <>
+      <>{ !(payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.firstName && payment.lastName) ? (
+        <Fail />
+      ) : (
+        <div className="checkout-container">
+          <h1 className="mb-5 yrCart">Your Cart</h1>
       <div className="card checkout">
     <div className="title">Order Details</div>
     <div className="info">
         <div className="row">
             <div className="col-7"> <span id="heading">Date</span><br/> <span id="details">{date.toDateString()}</span> </div>
-            <div className="col-5 pull-right"> <span id="heading">Order No.</span><br/> <span id="details">{orders.id + 1}</span> </div>
+            <div className="col-5 pull-right"> <span id="heading">Location</span><br/> <span id="details">{event.location}</span> </div>
         </div>
     </div>
     <div className="pricing">
         <div className="row">
-            <div className="col-9"> <span id="name">{event.name}</span> </div>
-            <div className="col-3"> <span id="price">{event.price}</span> </div>
+            <div className="col-9"><big className="total">Event:</big> <span id="name">{event.name}</span> </div>
+            <div className="col-3"> <span id="price">{price(event.price)}</span> </div>
         </div>
         <div className="row">
-            <div className="col-9"> <span id="name">{zebra.name}</span> </div>
-            <div className="col-3"> <span id="price">{zebra.price}</span> </div>
+            <div className="col-9"><big className="total">Zebra:</big> <span id="name">{zebra.name}</span> </div>
+            <div className="col-3"> <span id="price">{price(zebra.price)}</span> </div>
         </div>
     </div>
     <div className="total">
         <div className="row">
-            <div className="col-9"></div>
-            <div className="col-3"><big>{orders.total}</big></div>
+            <div className="col-9"><big>Total:</big></div>
+            <div className="col-3"><big>{price(orders.total)}</big></div>
         </div>
     </div>
     <div className='Orders'>
@@ -113,9 +121,7 @@ export default class Orders extends Component {
                       </MyModal>
           </div>
 </div>
-      </>
-      ) : (
-        <Fail />
+      </div>
       )}
       </>
     );

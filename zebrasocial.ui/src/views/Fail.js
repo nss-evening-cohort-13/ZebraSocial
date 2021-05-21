@@ -11,12 +11,19 @@ export default class Fail extends Component {
                 <div className="alert alert-danger" role="alert">
                     <h4 className="alert-heading">Whoops!</h4>
                     <p>It looks like you are trying to checkout without any payment info</p>
+                    <p>or you have already checked out</p>
                     <hr />
                     <p className="mb-0">
                     <Link to={`/customers/${getUid()}`} className='admin-animals text-muted f-w-400 p-4'>
                         <Button className="mt-3" color="danger">Click Here</Button>
                         </Link>
                         to add payment info to your profile
+                    </p>
+                    <p className="mb-0">
+                    <Link to={'/zebras'} className='admin-animals text-muted f-w-400 p-4'>
+                        <Button className="mt-3" color="warning">Click Here</Button>
+                        </Link>
+                        to create another event
                     </p>
                 </div>
                 </div>

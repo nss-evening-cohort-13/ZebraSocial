@@ -1,4 +1,5 @@
 .checkout {
+    padding-top: 3%;
     body {
         background: #ddd3;
         height: 100vh;
@@ -17,7 +18,8 @@
         border-top: 3px solid rgb(252, 103, 49);
         border-bottom: 3px solid rgb(252, 103, 49);
         border-left: none;
-        border-right: none
+        border-right: none;
+        
     }
     
     @media(max-width:768px) {
@@ -201,4 +203,10 @@
     #progressbar li.active:after {
         background: rgb(252, 103, 49)
     }
+}
+.checkout-container {
+    padding-top: 5%;
+    max-width: 900px;
+    margin-left: 18%;
+    background-color: rgba(255, 255, 255, 0.815);
 }
