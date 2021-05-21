@@ -5,10 +5,11 @@ import { useForm } from 'react-hook-form';
 import { updatePaymentInfo } from '../../helpers/data/paymentData';
 import { baseUrl } from '../../helpers/config.json';
 import { getCustomerById, updateCustomerInfo } from '../../helpers/data/customerData';
+import getUid from '../../helpers/data/authData';
 
 const paymentUrl = `${baseUrl}/paymentInfo`;
 
-export default function EditPaymentForm({ payment, customer }) {
+export default function EditPaymentForm({ payment }) {
   const {
     register,
     handleSubmit,
@@ -17,14 +18,12 @@ export default function EditPaymentForm({ payment, customer }) {
 
   const onSubmit = (data) => {
     // const customerPayId = customer.paymentId;
-    const customerId = customer.firebaseId;
+    const customerId = getUid();
     const paymentId = payment.id;
-    const parsedId = Number(payment.id);
     const parsedMonth = Number(data.expMonth);
     const parsedYear = Number(data.expYear);
     const parsedCVV = Number(data.cvv);
     const dataObject = {
-      id: parsedId,
       firstName: data.firstName,
       lastName: data.lastName,
       cardNumber: data.cardNumber,
