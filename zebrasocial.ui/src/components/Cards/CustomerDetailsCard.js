@@ -10,7 +10,7 @@ import MyModal from '../AppModal';
 import EditCustomerForm from '../Forms/EditCustomerForm';
 import EditPaymentForm from '../Forms/EditPaymentForm';
 
-export default function CustomerDetailsCard({ customer, customerPayment }) {
+export default function CustomerDetailsCard({ customer }) {
   const [cust, setCustomers] = useState([]);
   const [pay, setPayments] = useState([]);
   const [event, setEvents] = useState([]);
@@ -48,7 +48,10 @@ export default function CustomerDetailsCard({ customer, customerPayment }) {
     getCustomer(customerId);
   }, [cust]);
   useEffect(() => {
-    getPayment(customerPayment);
+    const customerId = getUid();
+    if (customerId) {
+      getPayment(customerId);
+    }
   }, [pay]);
   useEffect(() => {
     const customerId = getUid();

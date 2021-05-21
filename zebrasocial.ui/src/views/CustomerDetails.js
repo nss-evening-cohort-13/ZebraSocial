@@ -29,8 +29,10 @@ const CustomerDetails = (props) => {
     getCustomer(customerId);
   }, [customer]);
   useEffect(() => {
-    const customerPayment = customer.paymentId;
-    getPayment(customerPayment);
+    const customerId = getUid();
+    if (customerId) {
+      getPayment(customerId);
+    }
   }, [payment]);
 
   const showCustomers = () => (

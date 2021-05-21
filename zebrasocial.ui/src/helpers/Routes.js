@@ -15,6 +15,7 @@ import ProductCategories from '../views/productCategories';
 import AdminView from '../views/AdminView';
 import SearchResults from '../views/searchResults';
 import Success from '../views/Success';
+import Fail from '../views/Fail';
 import { getCustomerById } from './data/customerData';
 import { getEventById } from './data/eventData';
 import getUid from './data/authData';
@@ -24,8 +25,7 @@ export default function Routes({ user, userDetails }) {
   const [customer, setCustomers] = useState([]);
   const [event, setEvents] = useState([]);
 
-  const getCustomer = () => {
-    const customerId = getUid();
+  const getCustomer = (customerId) => {
     getCustomerById(customerId).then((response) => {
       const singleCustomer = response;
       setCustomers(singleCustomer);
@@ -33,8 +33,7 @@ export default function Routes({ user, userDetails }) {
       .catch((err) => console.warn('nope', err));
   };
 
-  const getEvent = () => {
-    const customerId = getUid();
+  const getEvent = (customerId) => {
     getEventById(customerId).then((response) => {
       const eventInfo = response;
       setEvents(eventInfo);
@@ -43,20 +42,17 @@ export default function Routes({ user, userDetails }) {
   };
 
   useEffect(() => {
-    // const customerId = getUid();
-    document.addEventListener('customer', getCustomer);
-
-    return () => {
-      document.removeEventListener('customer', getCustomer);
-    };
+    const customerId = getUid();
+    if (customerId) {
+      getCustomer(customerId);
+    }
   }, [customer]);
 
   useEffect(() => {
-    document.addEventListener('customer', getEvent);
-
-    return () => {
-      document.removeEventListener('customer', getEvent);
-    };
+    const customerId = getUid();
+    if (customerId) {
+      getEvent(customerId);
+    }
   }, [event]);
   return (
     <Switch>
@@ -74,6 +70,7 @@ export default function Routes({ user, userDetails }) {
       <Route exact path='/search/:term' component={(props) => <SearchResults {...props}/>} />
       <Route exact path='/customers/:id' component={() => <CustomerDetails user={user} customer={customer} />}/>
       <Route exact path='/success' component={Success} />
+      <Route exact path='/fail' component={Fail} />
     </Switch>
   );
 }

@@ -60,6 +60,7 @@ export default class EventDetails extends Component {
     return (
         <>{ event.customerId ? (
       <div className='eventDisplay'>
+        <h1 className="mb-5">Your Event</h1>
       <div className="container event-profile">
                 <div className="row">
                     <div className="col-md-4">

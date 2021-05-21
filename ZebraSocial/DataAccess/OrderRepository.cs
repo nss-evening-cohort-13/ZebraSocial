@@ -74,7 +74,8 @@ namespace ZebraSocial.DataAccess
                         FROM Orders o
                         join Events e on o.EventId = e.id
                         join Customers c on o.CustomerId = c.id
-                        where c.FirebaseId = @id";
+                        where c.FirebaseId = @id
+                        ORDER BY o.id DESC";
 
             var Order = db.QueryFirstOrDefault<Order>(sql, new { id = id });
 

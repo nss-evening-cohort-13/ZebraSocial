@@ -37,8 +37,8 @@ export default function EditCustomerForm({ customer, event, zebra }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Are you sure you want to submit?</h2>
-      <button type='submit'>Submit</button>
+      <h2>Are you sure you want to checkout?</h2>
+      <button type='submit' className="btn btn-danger">Yup</button>
     </form>
   );
 }

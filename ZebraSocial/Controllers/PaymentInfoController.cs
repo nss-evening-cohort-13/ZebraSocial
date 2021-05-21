@@ -74,7 +74,7 @@ namespace ZebraSocial.Controllers
         }
 
         [HttpGet("{customerPaymentId}/payInfo")]
-        public IActionResult GetCustomersPaymentById(int customerPaymentId)
+        public IActionResult GetCustomersPaymentById(string customerPaymentId)
         {
             return Ok(_repo.GetCustomerPayment(customerPaymentId));
         }
