@@ -33,6 +33,7 @@ export default function EditCustomerForm({ customer, event, zebra }) {
       const uid = getUid();
       getEventById(uid).then((response) => {
         const responseObject = {
+          id: response.id,
           animalId: response.animalId,
           name: response.name,
           type: response.type,
@@ -42,7 +43,7 @@ export default function EditCustomerForm({ customer, event, zebra }) {
           customerId: response.customerId,
           isPaidFor: true
         };
-        updateEventInfo(event.id, responseObject).then(() => {
+        updateEventInfo(response.id, responseObject).then(() => {
           setTimeout(() => {
             history.push('/success');
           }, 500);

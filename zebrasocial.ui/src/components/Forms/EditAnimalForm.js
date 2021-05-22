@@ -45,11 +45,11 @@ export default function EditAnimalForm({ animal }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h5>First Name</h5>
+      <h5>Name</h5>
       <input defaultValue={animal.name || null} {...register('name', { required: true })} />
-      <h5>Last Name</h5>
+      <h5>Type</h5>
       <input defaultValue={animal.type || null} {...register('type', { required: true })} />
-      <h5>eventSpecialty</h5>
+      <h5>Event Specialty</h5>
       <input defaultValue={animal.eventSpecialty || null} {...register('eventSpecialty', { required: true })} />
       <h5>Image Url</h5>
       <input defaultValue={animal.imageUrl || null} {...register('imageUrl', { required: true })} />
