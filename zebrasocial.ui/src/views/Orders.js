@@ -81,7 +81,7 @@ export default class Orders extends Component {
       return `$${final.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
     };
     return (
-      <>{ !(payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.firstName && payment.lastName) ? (
+      <>{ !(payment.cardNumber && payment.expMonth && payment.expYear && payment.cvv && payment.firstName && payment.lastName) || event.isPaidFor === true || event === 0 ? (
         <Fail />
       ) : (
         <div className="checkout-container">

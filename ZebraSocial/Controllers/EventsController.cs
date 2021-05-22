@@ -88,10 +88,21 @@ namespace ZebraSocial.Controllers
         // api/events/{id}/update
         public IActionResult UpdateEvent(Event yourEvent)
         {
+            yourEvent.Price = yourEvent.Length switch
+            {
+                Length.FullDay => 2320.00m,
+                Length.HalfDayEvening => 1500.00m,
+                Length.HalfDayMorning => 1125.00m,
+                _ => 100000
+            }; 
             if (yourEvent == null)
             {
                 return NotFound("The event you are trying to update could not be found. Sorry...");
             };
+            if (yourEvent.IsPaidFor)
+            {
+                yourEvent.IsPaidFor = true;
+            }
             _repo.Update(yourEvent);
 
             return Ok(yourEvent);

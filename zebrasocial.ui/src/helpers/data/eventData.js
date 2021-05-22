@@ -25,6 +25,8 @@ const getAllEvents = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const updateEventInfo = (eventId, updatedEvent) => axios.put(`${eventUrl}/${eventId}/update`, updatedEvent);
+
 export {
-  addEvent, getEventById, getZebraById, deleteEvent, getAllEvents
+  addEvent, getEventById, getZebraById, deleteEvent, getAllEvents, updateEventInfo
 };

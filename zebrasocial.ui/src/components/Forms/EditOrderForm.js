@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { addOrder } from '../../helpers/data/orderData';
+import { getEventById, updateEventInfo } from '../../helpers/data/eventData';
+import getUid from '../../helpers/data/authData';
 
 export default function EditCustomerForm({ customer, event, zebra }) {
   const {
@@ -28,9 +30,27 @@ export default function EditCustomerForm({ customer, event, zebra }) {
       total: parsedTotal,
     };
     addOrder(dataObject).then(() => {
-      setTimeout(() => {
-        history.push('/success');
-      }, 500);
+      const uid = getUid();
+      getEventById(uid).then((response) => {
+        const responseObject = {
+          id: response.id,
+          animalId: response.animalId,
+          name: response.name,
+          type: response.type,
+          date: response.date,
+          length: response.length,
+          location: response.location,
+          customerId: response.customerId,
+          isPaidFor: true
+        };
+        updateEventInfo(response.id, responseObject).then(() => {
+          setTimeout(() => {
+            history.push('/success');
+          }, 500);
+        })
+          .catch((err) => console.warn('event not updated', err));
+      })
+        .catch((err) => console.warn('nope', err));
     })
       .catch((err) => console.warn('add order broke', err));
   };

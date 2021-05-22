@@ -57,6 +57,12 @@ export default class EventDetails extends Component {
         return 'Half Day Evening';
       } return 'No Length';
     };
+    const showDelete = (isPaidFor) => {
+      if (isPaidFor) {
+        return <h3 className="text-success">PAID</h3>;
+      }
+      return <button type="button" id={event.id} onClick={(e) => { this.deleteEve(e); } } className="btn btn-danger">Delete Event</button>;
+    };
     return (
         <>{ event.customerId ? (
       <div className='eventDisplay'>
@@ -75,7 +81,7 @@ export default class EventDetails extends Component {
                                     </h5>
                                     <p className="proile-rating">Total Cost Tax Included: <span>{price()}</span></p>
                             <hr />
-                            <button type="button" id={event.id} onClick={(e) => { this.deleteEve(e); } } className="btn btn-danger">Delete Event</button>
+                            <div>{showDelete(event.isPaidFor)}</div>
                         </div>
                     </div>
                     <div className="col-md-2">
